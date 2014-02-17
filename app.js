@@ -9,7 +9,9 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 
 var index = require('./routes/index');
-//var schedule = require()
+var schedule = require('./routes/schedule');
+var add_event = require('./routes/add-event');
+var add_sleep = require('./routes/add-sleep');
 // var project = require('./routes/project');
 // var palette = require('./routes/palette');
 // Example route
@@ -39,6 +41,9 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
+app.get('/schedule', schedule.view);
+app.get('/add-event', add_event.view);
+app.get('/add-sleep', add_sleep.view);
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);
 // Example route
