@@ -25,8 +25,25 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body>
-  <h1>Add Sleep</h1><a class="button" href="schedule">Back to Schedule</a>
+  <h1>Add Sleep</h1>
+  <a href="http://en.wikipedia.org/wiki/Polyphasic_sleep#Claimed_sleep_patterns">To find out more about alternative sleep cycles, click here.</a>
+  <form id="sleep_form" role="form">
+    <div class="form-group">
+      <label for="sleep_cycle">Choose sleep cycle:</label>
+      <select class="form-control" id="sleep_cycle">
+        <option value="0">Biphasic</option>
+        <option value="1">Everyman</option>
+        <option value="2">Dymaxion</option>
+        <option value="3">Uberman</option>
+      </select>
+    </div>
+    <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button>
+  </form>
+
+  
+  <a class="button" href="schedule">Back to Schedule</a>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
+  <script src="js/sleep_form.js"></script>
+  <!--<script type="text/javascript" src="js/webflow.js"></script>-->
 </body>
 </html>
