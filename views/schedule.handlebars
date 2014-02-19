@@ -43,11 +43,18 @@
   </header>
   <div class="section white" id="page-nav-organize"></div>
   <div class="section subfooter white"></div>
+  {{#each events}}
+  <div class="time-field">{{start_time}}</div><a class='button' href='#'>{{event_name}}</a>
+
+  {{/each}}
+<!--
   <div class="time-field">11 AM - 1 PM</div><a class="button" href="#">CS 145</a>
   <div class="time-field">1 PM - 3 PM</div><a class="button" href="#">Finish Chem Problem Set</a>
   <div class="time-field">3 PM - 5 PM</div><a class="button" href="#">Sleep</a>
   <div class="time-field">5 PM - 6 PM</div><a class="button" href="#">Dinner with advisor</a>
+-->
   <!--<a class="button" href="calendar">Go To Calendar</a>-->
+
   <a class="new-button-class" href="add-event">Add Event</a><a class="new-button-class" href="add-sleep">Add Sleep</a>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
