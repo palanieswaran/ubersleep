@@ -32,8 +32,12 @@
       <input type="text" class="form-control" id="event_name" placeholder="Enter name here">
     </div>
     <div class="form-group">
-      <label for="description">And to description:</label>
+      <label for="description">Description:</label>
       <input type="text" class="form-control" id="description" placeholder="Project desicription">
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" class="form-control" id="date" placeholder="">
     </div>
     <div class="form-group">
       <label for="start_time">Start time:</label>
@@ -141,12 +145,14 @@
         <option value="47">11:30 pm</option>
       </select>
     </div>
-    <a id= "submitBtn" class = "button" href="schedule"> Add to Schedule</a>
+    <!--<a id= "submitBtn" class = "button"> Add to Schedule</a>-->
  <!--   <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button> -->
+  <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button>
   </form>
 
+
   
-  <a class="button" href="schedule">Back to Schedule</a>
+  <a class="button" id="back" href="schedule">Back to Schedule</a>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/event_form.js"></script>
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->

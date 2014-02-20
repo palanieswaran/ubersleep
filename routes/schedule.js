@@ -1,12 +1,17 @@
-var models = require('../events');
+var models = require('../models');
 
 
 exports.view = function(req, res) { 
-	/*var databaseURL = "mongodb://127.0.0.1:27017/test";
-	var collection = ["schedule"];
-	var database = require("mongoose").connect(databaseURL, collection);
-	var array = database.collection.find().toArray(fucntion(err,events));
-	*/
-	var arrayToday[] = models.Events.find({"date": new Date ('today')});
-	res.render('schedule',{'events':arrayToday});
+
+  var form_data = req.body;
+  console.log(form_data);
+
+	models.Event
+		.find({"date": form_data["date"]})
+		.sort('start_time')
+		.exec(renderEvent);
+
+	function renderEvent(err, events) {
+		res.render('schedule', {'events': events});
+	}
 }

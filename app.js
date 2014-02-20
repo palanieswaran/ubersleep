@@ -6,7 +6,8 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var handlebars = require('express3-handlebars')
+var handlebars = require('express3-handlebars');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var schedule = require('./routes/schedule');
@@ -16,6 +17,11 @@ var add_sleep = require('./routes/add-sleep');
 // var palette = require('./routes/palette');
 // Example route
 // var user = require('./routes/user');
+
+var local_database_name = 'heroku_app22187024';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
 
 var app = express();
 
@@ -44,6 +50,7 @@ app.get('/', index.view);
 app.get('/schedule', schedule.view);
 app.get('/add-event', add_event.view);
 app.get('/add-sleep', add_sleep.view);
+app.post('/event/new', add_event.add);
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);
 // Example route

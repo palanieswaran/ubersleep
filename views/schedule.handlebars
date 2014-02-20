@@ -25,6 +25,47 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body>
+
+  <script>
+  var query = window.location.search;
+  // Skip the leading ?, which should always be there, 
+  // but be careful anyway
+  if (query.substring(0, 1) == '?') {
+    query = query.substring(1);
+  }
+  var data = query.split(','); 
+  for (i = 0; (i < data.length); i++) {
+    data[i] = decodeURI(data[i]);
+  }
+</script>
+<h1>Schedule for 
+<script>
+document.write(data[0] + "\n")
+</script>
+</h1>
+
+<script>
+  var json = {
+      'date': data[0]
+  };
+    $.post('/schedule', json, function() {
+      window.location.href = 'schedule'; // reload the page
+    });
+</script>
+
+<div class="form-group">
+   <label for="date">Date:</label>
+   <input type="date" class="form-control" id="date" placeholder="">
+</div>
+
+<script>
+function reloadSchedule()
+{
+  window.location = "schedule?" + encodeURI(document.getElementById("date").value);
+}
+</script>
+<a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>
+
   <header class="section">
     <div class="w-container">
       <div class="w-row">
@@ -44,7 +85,10 @@
   <div class="section white" id="page-nav-organize"></div>
   <div class="section subfooter white"></div>
   {{#each events}}
-  <div class="time-field">{{start_time}}</div><a class='button' href='#'>{{event_name}}</a>
+    <p>Start time: {{start_time}}</p>
+    <p>End time: {{end_time}}</p>
+    <p>Event: {{event}}</p>
+    <p>Description: {{description}}</p>
 
   {{/each}}
 <!--
@@ -54,8 +98,26 @@
   <div class="time-field">5 PM - 6 PM</div><a class="button" href="#">Dinner with advisor</a>
 -->
   <!--<a class="button" href="calendar">Go To Calendar</a>-->
+  <br>
+  <br>
+  <br>
 
-  <a class="new-button-class" href="add-event">Add Event</a><a class="new-button-class" href="add-sleep">Add Sleep</a>
+  <script>
+  function sendAddEventData()
+  {
+    window.location = "add-event?" + encodeURI(document.getElementById("date").value);
+  }
+  </script>
+  <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
+
+  <script>
+  function sendAddSleepData()
+  {
+    window.location = "add-sleep?" + encodeURI(document.getElementById("date").value);
+  }
+  </script>
+  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData();"> Add Sleep</a>
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
 </body>
