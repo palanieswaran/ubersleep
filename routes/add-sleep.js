@@ -38,8 +38,8 @@ exports.addsleep = function(req, res) {
 			var map = {};
 			for (var start = 0; start < 48; start++) {
 				if (is_free[start] == "yes") {
-					int orig_start = start;
-					int length = 1;
+					var orig_start = start;
+					var length = 1;
 					start++;
 					for (var end = start; end < 48; end++) {
 						if (is_free[end] == "yes") {
