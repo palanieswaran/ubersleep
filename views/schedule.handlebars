@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -48,8 +49,8 @@ document.write(data[0] + "\n")
   var json = {
       'date': data[0]
   };
-    $.post('/schedule', json, function() {
-      window.location.href = 'schedule'; // reload the page
+    $.post('/schedule/render', json, function() {
+      window.location.href = 'schedule?' + data[0]; // reload the page
     });
 </script>
 
@@ -61,7 +62,14 @@ document.write(data[0] + "\n")
 <script>
 function reloadSchedule()
 {
-  window.location = "schedule?" + encodeURI(document.getElementById("date").value);
+  var dateToSend = encodeURI(document.getElementById("date").value);
+  var json = {
+     'date': dateToSend
+  };
+  $.post('/schedule/render', json, function() {
+    window.location.href = 'schedule?' + dateToSend; // reload the page
+   });
+
 }
 </script>
 <a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>
@@ -85,6 +93,7 @@ function reloadSchedule()
   <div class="section white" id="page-nav-organize"></div>
   <div class="section subfooter white"></div>
   {{#each events}}
+    <p>sample</p>
     <p>Start time: {{start_time}}</p>
     <p>End time: {{end_time}}</p>
     <p>Event: {{event}}</p>
@@ -105,7 +114,7 @@ function reloadSchedule()
   <script>
   function sendAddEventData()
   {
-    window.location = "add-event?" + encodeURI(document.getElementById("date").value);
+    window.location = "add-event?" + data[0];
   }
   </script>
   <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
@@ -113,12 +122,12 @@ function reloadSchedule()
   <script>
   function sendAddSleepData()
   {
-    window.location = "add-sleep?" + encodeURI(document.getElementById("date").value);
+    window.location = "add-sleep?" + data[0];
   }
   </script>
   <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData();"> Add Sleep</a>
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
+  
+  <!--<script type="text/javascript" src="js/webflow.js"></script>-->
 </body>
 </html>

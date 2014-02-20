@@ -48,12 +48,14 @@
   </div>
 
   <script>
-  function sendData()
+  function sendData()
   {
     window.location = "schedule?" + encodeURI(document.getElementById("date").value);
   }
+  console.log("after");
   </script>
   <a id= "startBtn" class = "button" href="javascript:sendData();"> Begin Sleep Optimization</a>
+
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
