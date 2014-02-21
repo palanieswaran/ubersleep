@@ -39,32 +39,23 @@
     data[i] = decodeURI(data[i]);
   }
 </script>
-<h1>Schedule for 
+<h1>Schedule
 <script>
 document.write(data[0] + "\n")
 </script>
 </h1>
 
-<script>
-  var json = {
-      'date': data[0]
-  };
-    $.post('/schedule/render', json, function() {
-      window.location.href = 'schedule?' + data[0]; // reload the page
-    });
-</script>
-
-<div class="form-group">
+<!--<div class="form-group">
    <label for="date">Date:</label>
    <input type="date" class="form-control" id="date" placeholder="">
-</div>
+</div>-->
 
 <script>
 function reloadSchedule()
 {
   var dateToSend = encodeURI(document.getElementById("date").value);
   var json = {
-     'date': dateToSend
+     'date': document.getElementById("date").value
   };
   $.post('/schedule/render', json, function() {
     window.location.href = 'schedule?' + dateToSend; // reload the page
@@ -72,16 +63,16 @@ function reloadSchedule()
 
 }
 </script>
-<a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>
+<!--<a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>-->
 
   <header class="section">
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-4 subfooter-left">
-          <div class="app-name">Today's
+          <!--<div class="app-name">Today's
             <br>
             <br>Schedule</div>
-        </div>
+        </div>-->
         <div class="w-col w-col-8 nav-column">
           <a class="w-hidden-small w-hidden-tiny w-inline-block app-store-button" href="http://apple.com">
             <img src="images/appstore.png" width="114px" alt="52af8cf8aae9d4d567000057_appstore.png">
@@ -92,14 +83,72 @@ function reloadSchedule()
   </header>
   <div class="section white" id="page-nav-organize"></div>
   <div class="section subfooter white"></div>
+  
   {{#each events}}
-    <p>sample</p>
-    <p>Start time: {{start_time}}</p>
-    <p>End time: {{end_time}}</p>
-    <p>Event: {{event}}</p>
-    <p>Description: {{description}}</p>
+    <script>
+      function getStartTime() {
+        var minutesFromMidnight = 30 * {{start_time}};
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 11) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
 
-  {{/each}}
+      function getEndTime() {
+        if ({{end_time}} == 48) {
+          return "12:00AM"
+        }
+        var minutesFromMidnight = 30 * {{end_time}};
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 11) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+
+    </script>
+    <p>
+      {{date}}
+    </p>
+    <p>Event: {{event}}</p>
+    <p>Start time: 
+      <script>document.write(getStartTime())</script>    End time: 
+      <script>document.write(getEndTime())</script>
+    </p>
+    <p>Description: {{description}}</p>
+    <br><br>
+
+  {{/each}}
+
 <!--
   <div class="time-field">11 AM - 1 PM</div><a class="button" href="#">CS 145</a>
   <div class="time-field">1 PM - 3 PM</div><a class="button" href="#">Finish Chem Problem Set</a>

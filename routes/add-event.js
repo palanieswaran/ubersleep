@@ -21,5 +21,14 @@ exports.add = function(req, res) {
   function afterSaving(err) {
     if (err) {console.log(err); res.send(500); }
     res.redirect('schedule');
+    /*var dateToSend = encodeURI(form_data["date"]);
+    var json = {
+     'date': form_data["date"]
+    };
+    $.post('/schedule/render', json, function() {
+      window.location.href = 'schedule?' + dateToSend; // reload the page
+    });*/
+  
   }
+
 }

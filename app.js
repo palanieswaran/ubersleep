@@ -52,6 +52,7 @@ app.get('/add-event', add_event.view);
 app.get('/add-sleep', add_sleep.view);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
+app.post('/sleep/new', add_sleep.addsleep);
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);
 // Example route

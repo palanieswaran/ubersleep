@@ -3,18 +3,17 @@ var models = require('../models');
 
 exports.view = function(req, res) { 
 
-  /*var form_data = req.body;
+  var form_data = req.body;
   console.log("backend" + form_data);
 	models.Event
-		.find({"date": form_data["date"]})
+		.find()
+		.sort('date')
 		.sort('start_time')
 		.exec(renderEvent);
 
 	function renderEvent(err, events) {
 		res.render('schedule', {'events': events});
-	}*/
-
-	res.render('schedule');
+	}
 }
 
 exports.renderPage = function(req, res) {
@@ -27,6 +26,11 @@ exports.renderPage = function(req, res) {
 
 	function renderEvent(err, events) {
 		res.render('schedule', {'events': events});
+		for (var i = 0; i < events.length; i++) {
+			console.log(events[i]["event"]);
+			console.log("start time is: " + events[i]["start_time"]);
+			console.log("end time is: " + events[i]["end_time"]);
+		}
 		console.log(events.length + " events");
 	}
 }

@@ -22,8 +22,10 @@ function initializePage() {
 
 function addEvent(e) {
 	var sleepCycle = document.getElementById("sleep_cycle").value;
+	var date = document.getElementById("date").value;
 	var json = {
-		'sleep_option': sleepCycle
+		'sleep_option': sleepCycle,
+		'date': date
 	};
 	$.post('/sleep/new', json, function() {
 		window.location.href = 'schedule';
