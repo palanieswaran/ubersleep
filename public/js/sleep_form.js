@@ -23,6 +23,7 @@ function initializePage() {
 function addEvent(e) {
 	var sleepCycle = document.getElementById("sleep_cycle").value;
 	var date = document.getElementById("date").value;
+	//convert date explicitly here how we want it
 	var json = {
 		'sleep_option': sleepCycle,
 		'date': date

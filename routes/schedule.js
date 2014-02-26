@@ -27,7 +27,7 @@ exports.renderPage = function(req, res) {
 	function renderEvent(err, events) {
 		res.render('schedule', {'events': events});
 		for (var i = 0; i < events.length; i++) {
-			console.log(events[i]["event"]);
+			console.log(events[i]["date"]);
 			console.log("start time is: " + events[i]["start_time"]);
 			console.log("end time is: " + events[i]["end_time"]);
 		}

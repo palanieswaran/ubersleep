@@ -136,16 +136,18 @@ function reloadSchedule()
       }
 
     </script>
-    <p>
-      {{date}}
-    </p>
-    <p>Event: {{event}}</p>
-    <p>Start time: 
+    <p>{{date}}<br> Event: {{event}}<br>
+  Start time: 
       <script>document.write(getStartTime())</script>    End time: 
       <script>document.write(getEndTime())</script>
-    </p>
-    <p>Description: {{description}}</p>
+    <br>
+Description: {{description}}<br></p>
+<script>
+//pass in {{_id}} instead.
+  document.write("<a id= \"delete{{event}}\" class = \"new-button-class\" href=\"delete?date={{date}}&event={{event}}\"> Delete Event</a>");
+</script>
     <br><br>
+
 
   {{/each}}
 
@@ -174,7 +176,7 @@ function reloadSchedule()
     window.location = "add-sleep?" + data[0];
   }
   </script>
-  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData();"> Add Sleep</a>
+  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleep"> Add Sleep</a>
 
   
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->
