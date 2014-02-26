@@ -19,13 +19,23 @@ $(".jumbotron p").toggleClass("active");
 // example: $("#div-id").click(functionToCall);
 //$("#submitBtn").click(addEvent);
 
-$('#deleteBtn').click(addEvent);
+$('#deleteBtn').click(deleteEvent);
 
 }
 
+function GetUrlValue(VarSearch){
+	    var SearchString = window.location.search.substring(1);
+	    var VariableArray = SearchString.split('&');
+	    for(var i = 0; i < VariableArray.length; i++){
+	        var KeyValuePair = VariableArray[i].split('=');
+	        if(KeyValuePair[0] == VarSearch){
+	            return KeyValuePair[1];
+	        }
+	    }
+	}
 
 
-function addEvent(e) {
+function deleteEvent(e) {
 	function GetUrlValue(VarSearch){
 	    var SearchString = window.location.search.substring(1);
 	    var VariableArray = SearchString.split('&');
@@ -36,17 +46,19 @@ function addEvent(e) {
 	        }
 	    }
 	}
-var date_arr = GetUrlValue("date").split('%');
-var date_str = "";
-for (var i = 0; i < date_arr.length - 1; i++) {
-	date_str += (date_arr[i] + " ");
-}
-date_str += (date_arr[date_arr.length-1]);
+var id = GetUrlValue("id");
+console.log(id);
+//var date_arr = GetUrlValue("date").split('%');
+//var date_str = "";
+//for (var i = 0; i < date_arr.length - 1; i++) {
+//	date_str += (date_arr[i] + " ");
+//}
+//date_str += (date_arr[date_arr.length-1]);
 
-console.log("the date is:" + date_str);
-console.log("the event is:" + GetUrlValue("event"));
-var event_name = GetUrlValue("event");
-  $.post('/delete/'+event_name + date_str +'/deleteEvent', function() {
+//console.log("the date is:" + date_str);
+//console.log("the event is:" + GetUrlValue("event"));
+//var event_name = GetUrlValue("event");
+  $.post('/delete/'+id+'/deleteEvent', function() {
 window.location.href = 'schedule';
 });
 }

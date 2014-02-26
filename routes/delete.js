@@ -5,13 +5,12 @@ exports.view = function(req, res) {
 }
 
 exports.deleteEvent = function(req, res) {
-var event_name = req.params.event_name;
-var date = req.params.date;
-
- /* models.Project.find({"event": event, "date": date}).remove().exec(afterRemoving);
+  var id = req.params.id;
+  console.log(id);
+  models.Event.find({"_id": id}).remove().exec(afterRemoving);
 
   function afterRemoving(err) {
     if (err) {console.log(err); res.send(500);}
     res.redirect('schedule');
-  }*/
+  }
 }

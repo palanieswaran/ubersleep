@@ -136,17 +136,17 @@ function reloadSchedule()
       }
 
     </script>
-    <p>{{date}}<br> Event: {{event}}<br>
-  Start time: 
+    <h5>{{modifiedDate}}<h5> 
+    <p>Event: {{event}}<br>
+    Start time: 
       <script>document.write(getStartTime())</script>    End time: 
       <script>document.write(getEndTime())</script>
     <br>
 Description: {{description}}<br></p>
 <script>
-//pass in {{_id}} instead.
-  document.write("<a id= \"delete{{event}}\" class = \"new-button-class\" href=\"delete?date={{date}}&event={{event}}\"> Delete Event</a>");
+  document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}\"> Delete Event</a>");
 </script>
-    <br><br>
+    <br>
 
 
   {{/each}}

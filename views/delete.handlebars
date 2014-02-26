@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -25,16 +26,16 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body>
+  <script src="js/delete_form.js"></script>
+
+
   <h1>Delete Event</h1>
-    
+  <p><script>document.write("Event Name: " + GetUrlValue("event"))</script> </p>
     <button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
     <a href="schedule">Back to Schedule</a>
   </form>
-
   
-  <a class="button" href="schedule">Back to Schedule</a>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/delete_form.js"></script>
+  
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->
 </body>
 </html>

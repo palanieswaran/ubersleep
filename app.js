@@ -55,7 +55,7 @@ app.get('/delete', delete_js.view);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
 app.post('/sleep/new', add_sleep.addsleep);
-app.post('/delete/:event_name:date/deleteEvent', delete_js.deleteEvent);
+app.post('/delete/:id/deleteEvent', delete_js.deleteEvent);
 
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);
