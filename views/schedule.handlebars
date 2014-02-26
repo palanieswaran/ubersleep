@@ -136,7 +136,7 @@ function reloadSchedule()
       }
 
     </script>
-    <h2>{{modifiedDate}}</h2> 
+    <h2><font color="blue">{{modifiedDate}}</font></h2> 
     <p>Event: {{event}}<br>
     Start time: 
       <script>document.write(getStartTime())</script>    End time: 
@@ -176,7 +176,7 @@ Description: {{description}}<br></p>
     window.location = "add-sleep?" + data[0];
   }
   </script>
-  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleep"> Add Sleep</a>
+  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData()"> Add Sleep</a>
 
   
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->

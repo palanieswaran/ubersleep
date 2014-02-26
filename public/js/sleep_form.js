@@ -18,6 +18,7 @@ function initializePage() {
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
 	$("#submitBtn").click(addEvent); 
+	$('#scheduleBtn').click(goBackToSchedule);
 }
 
 function addEvent(e) {

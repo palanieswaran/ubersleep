@@ -145,14 +145,17 @@
         <option value="47">11:30 pm</option>
       </select>
     </div>
-    <!--<a id= "submitBtn" class = "button"> Add to Schedule</a>-->
- <!--   <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button> -->
-  <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button>
+    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
   </form>
 
-
+  <script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule";
+  }
+  </script>
   
-  <a class="button" id="back" href="schedule">Back to Schedule</a>
+  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/event_form.js"></script>
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->

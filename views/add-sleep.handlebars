@@ -42,11 +42,17 @@
       <label for="date">Date:</label>
       <input type="date" class="form-control" id="date" placeholder="">
     </div>
-    <button id="submitBtn" type="button" class="btn btn-default">Add to Schedule</button>
+    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
   </form>
 
-  
-  <a class="button" href="schedule">Back to Schedule</a>
+  <script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule";
+  }
+  </script>
+  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/sleep_form.js"></script>
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->
