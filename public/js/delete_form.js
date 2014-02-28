@@ -59,6 +59,6 @@ console.log(id);
 //console.log("the event is:" + GetUrlValue("event"));
 //var event_name = GetUrlValue("event");
   $.post('/delete/'+id+'/deleteEvent', function() {
-window.location.href = 'schedule';
+window.location.href = 'schedule2';
 });
 }

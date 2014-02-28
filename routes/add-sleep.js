@@ -4,6 +4,10 @@ exports.view = function(req, res) { 
 	res.render('add-sleep');
 }
 
+exports.view2 = function(req, res) { 
+	res.render('add-sleep2');
+}
+
 //query data based on date.
 
 exports.addsleep = function(req, res) {
@@ -200,7 +204,7 @@ exports.addsleep = function(req, res) {
 							curr_end = finalMap[j];
 							console.log("start of sleep is " + j + " and will last until " + curr_end);
 							var newEvent = new models.Event({
-							    "event": "sleep" + i,
+							    "event": "Sleep " + i,
 							    "date": form_data["date"],
 							    "description": "Sleep cycle!",
 							    "start_time": j,
@@ -217,7 +221,7 @@ exports.addsleep = function(req, res) {
 					}
 				}
 
-			res.redirect("schedule");
+			res.redirect("schedule2");
 			}
 		}
 }

@@ -4,7 +4,7 @@
 <html data-wf-site="52f3116d5d8eed2b6b00065c">
 <head>
   <meta charset="utf-8">
-  <title>Slate Template</title>
+  <title>Sleeprite - Add Sleep</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
@@ -25,45 +25,36 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body>
-  <header class="section">
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-4 subfooter-left">
-          <div class="app-name">ubersleep</div>
-        </div>
-        <div class="w-col w-col-8 nav-column">
-          <a class="w-hidden-small w-hidden-tiny w-inline-block app-store-button" href="http://apple.com">
-            <img src="images/appstore.png" width="114px" alt="52af8cf8aae9d4d567000057_appstore.png">
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-  <div class="section hero"></div>
-  <div class="section white" id="page-nav-organize"></div>
-  
-  <!--<div class="form-group">
-   <label for="date">Date:</label>
-   <input type="date" class="form-control" id="date" placeholder="">
-  </div>-->
 
-  <script>
-  function sendData()
+  <h1>Add Sleep</h1>
+  <font color="blue"><b>Biphasic - One 5 hour sleep and one 1 hour, 30 minute sleep<br>
+  Everyman - One 3 hour sleep and three 30 minute sleeps<br>
+  Dymaxion - Four 30 minute sleeps<br>
+  Uberman - Six 30 minute sleeps<br></b></font>
+  <a href="http://en.wikipedia.org/wiki/Polyphasic_sleep#Claimed_sleep_patterns">To find out more about alternative sleep cycles, click here.</a>
+  <form id="sleep_form" role="form">
+    <div class="form-group">
+      <label for="sleep_cycle">Choose sleep cycle:</label>
+      <select class="form-control" id="sleep_cycle">
+        <option value="0">Biphasic</option>
+        <option value="1">Everyman</option>
+        <option value="2">Dymaxion</option>
+        <option value="3">Uberman</option>
+      </select>
+    </div>
+    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
+  </form>
+
+  <script>
+  function goBackToSchedule(e)
   {
-    var encodedDate = encodeURI(document.getElementById("date").value);
-    var json = {
-      'date': document.getElementById("date").value
-    };
-    $.post('/schedule/render', json, function() {
-      window.location.href = 'schedule?' + encodedDate; // reload the page
-    });
-  }
+    window.location = "schedule";
+  }
   </script>
-
-  <a id= "startBtn" class = "button" href="schedule2"> Begin Sleep Optimization</a>
-
+  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
+  <script src="js/sleep_form2.js"></script>
+  <!--<script type="text/javascript" src="js/webflow.js"></script>-->
 </body>
 </html>

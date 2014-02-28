@@ -136,7 +136,7 @@ function reloadSchedule()
       }
 
     </script>
-    <h2><font color="blue">{{modifiedDate}}</font></h2> 
+    <h2><font color="blue">{{modifiedDate}}</font></h2>{{#if links}}<a id= "add_ev"  href="add-event2?date={{date}}"> Add Event</a>    <a id= "add_sl"  href="add-sleep2?date={{date}}"> Add Sleep</a>{{/if}}
     <p>Event: {{event}}<br>
     Start time: 
       <script>document.write(getStartTime())</script>    End time: 
@@ -144,7 +144,7 @@ function reloadSchedule()
     <br>
 Description: {{description}}<br></p>
 <script>
-  document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}\"> Delete Event</a>");
+  document.write("<a id= \"delete{{event}}\"  href=\"delete?3id={{_id}}&event={{event}}\"> Delete Event</a>");
 </script>
     <br>
 

@@ -4,6 +4,10 @@ exports.view = function(req, res) { 
 	res.render('add-event');
 }
 
+exports.view2 = function(req, res) { 
+  res.render('add-event2');
+}
+
 exports.add = function(req, res) {
   var form_data = req.body;
   console.log(form_data);
@@ -20,7 +24,7 @@ exports.add = function(req, res) {
 
   function afterSaving(err) {
     if (err) {console.log(err); res.send(500); }
-    res.redirect('schedule');
+    res.redirect('schedule2');
     /*var dateToSend = encodeURI(form_data["date"]);
     var json = {
      'date': form_data["date"]

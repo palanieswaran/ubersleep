@@ -11,6 +11,6 @@ exports.deleteEvent = function(req, res) {
 
   function afterRemoving(err) {
     if (err) {console.log(err); res.send(500);}
-    res.redirect('schedule');
+    res.redirect('schedule2');
   }
 }

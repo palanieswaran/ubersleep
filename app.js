@@ -14,6 +14,8 @@ var schedule = require('./routes/schedule');
 var add_event = require('./routes/add-event');
 var add_sleep = require('./routes/add-sleep');
 var delete_js = require('./routes/delete');
+var add_event2 = require('./routes/add-event');
+var add_sleep2 = require('./routes/add-sleep');
 // var project = require('./routes/project');
 // var palette = require('./routes/palette');
 // Example route
@@ -52,6 +54,9 @@ app.get('/schedule', schedule.view);
 app.get('/add-event', add_event.view);
 app.get('/add-sleep', add_sleep.view);
 app.get('/delete', delete_js.view);
+app.get('/schedule2', schedule.view2);
+app.get('/add-event2', add_event.view2);
+app.get('/add-sleep2', add_sleep.view2);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
 app.post('/sleep/new', add_sleep.addsleep);
