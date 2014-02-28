@@ -30,7 +30,7 @@ function addEvent(e) {
 		'date': date
 	};
 	$.post('/sleep/new', json, function() {
-		window.location.href = 'schedule';
+		window.location.href = 'schedule2';
 	})
 
 }

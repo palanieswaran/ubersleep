@@ -61,7 +61,7 @@ function addEvent(e) {
 			'end_time': parseInt(endTime)
 		};
 		$.post('/event/new', json, function() {
-			window.location.href = 'schedule'; // reload the page
+			window.location.href = 'schedule2'; // reload the page
 		});
 
 	}

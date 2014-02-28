@@ -11,6 +11,8 @@
   <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/path/to/walltime-data.js"></script>
+  <script src="/path/to/walltime.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -66,6 +68,23 @@ function reloadSchedule()
 <!--<a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>-->
 
   <header class="section">
+
+  <script>
+  function sendAddEventData()
+  {
+    window.location = "add-event?" + data[0];
+  }
+  </script>
+  <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
+
+  <script>
+  function sendAddSleepData()
+  {
+    window.location = "add-sleep?" + data[0];
+  }
+  </script>
+  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData()"> Add Sleep</a>
+
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-4 subfooter-left">
@@ -83,6 +102,8 @@ function reloadSchedule()
   </header>
   <div class="section white" id="page-nav-organize"></div>
   <div class="section subfooter white"></div>
+
+
   
   {{#each events}}
     <script>
@@ -162,21 +183,7 @@ Description: {{description}}<br></p>
   <br>
   <br>
 
-  <script>
-  function sendAddEventData()
-  {
-    window.location = "add-event?" + data[0];
-  }
-  </script>
-  <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
 
-  <script>
-  function sendAddSleepData()
-  {
-    window.location = "add-sleep?" + data[0];
-  }
-  </script>
-  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData()"> Add Sleep</a>
 
   
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->

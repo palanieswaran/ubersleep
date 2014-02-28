@@ -57,7 +57,6 @@ exports.view = function(req, res) { 
 }
 
 exports.view2 = function(req, res) { 
-
   var form_data = req.body;
   console.log("backend" + form_data);
 	models.Event
