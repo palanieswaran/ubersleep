@@ -69,6 +69,22 @@ function reloadSchedule()
 
   <header class="section">
 
+  <script>
+  function sendAddEventData()
+  {
+    window.location = "add-event?" + data[0];
+  }
+  </script>
+  <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
+
+  <script>
+  function sendAddSleepData()
+  {
+    window.location = "add-sleep?" + data[0];
+  }
+  </script>
+  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData()"> Add Sleep</a>
+
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-4 subfooter-left">
@@ -141,13 +157,13 @@ function reloadSchedule()
       }
 
     </script>
-    <h2><font color="blue">{{modifiedDate}}</font></h2>{{#if links}}<a id= "add_ev"  href="add-event2?date={{date}}"> Add Event</a>    <a id= "add_sl"  href="add-sleep2?date={{date}}"> Add Sleep</a>{{/if}}
-    <p>Event: {{event}}<br>
+    <h2><font color="blue">{{modifiedDate}}</font></h2>{{#if links}}<h5><p><a id= "add_ev"  href="add-event2?date={{date}}"> Add Event Today</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a id= "add_sl"  href="add-sleep2?date={{date}}"> Add Sleep Today</a></p></h5><br>{{/if}}
+    <p><font color="black">Event: {{event}}<br>
     Start time: 
       <script>document.write(getStartTime())</script>    End time: 
       <script>document.write(getEndTime())</script>
     <br>
-Description: {{description}}<br></p>
+Description: {{description}}<br></font></p>
 <script>
   document.write("<a id= \"delete{{event}}\"  href=\"delete?3id={{_id}}&event={{event}}\"> Delete Event</a>");
 </script>
@@ -167,21 +183,7 @@ Description: {{description}}<br></p>
   <br>
   <br>
 
-  <script>
-  function sendAddEventData()
-  {
-    window.location = "add-event?" + data[0];
-  }
-  </script>
-  <a id= "addEventBtn" class = "new-button-class" href="javascript:sendAddEventData();"> Add Event</a>
 
-  <script>
-  function sendAddSleepData()
-  {
-    window.location = "add-sleep?" + data[0];
-  }
-  </script>
-  <a id= "addSleepBtn" class = "new-button-class" href="javascript:sendAddSleepData()"> Add Sleep</a>
 
   
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->

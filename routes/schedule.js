@@ -49,7 +49,7 @@ exports.view = function(req, res) { 
 			} else {
 				currDate = newDateString;
 				events[i]["modifiedDate"] = newDateString;
-				events[i]["links"] = false;
+				events[i]["links"] = true;
 			}
 		}
 		res.render('schedule', {'events': events});
@@ -107,7 +107,7 @@ exports.view2 = function(req, res) { 
 				//events[i]["links"] = "<a id= \"add_ev\"  href=\"event-form2?date={{date}}\"> Add Event</a>    <a id= \"add_sl\"  href=\"sleep-form2?date={{date}}\"> Add Sleep</a>"
 			}
 		}
-		res.render('schedule', {'events': events});
+		res.render('schedule2', {'events': events});
 	}
 }
 
