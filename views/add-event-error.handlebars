@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Wed Feb 12 2014 23:47:43 GMT+0000 (UTC) -->
+<html data-wf-site="52f3116d5d8eed2b6b00065c">
+<head>
+  <meta charset="utf-8">
+  <title>Sleeprite - Add Event</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700","Bitter:400,700","Lato:100,300,400,700,900"]
+      }
+    });
+  </script>
+  <script>
+    if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';
+  </script>
+  <link rel="shortcut icon" type="image/x-icon" href="https://y7v4p6k4.ssl.hwcdn.net/placeholder/favicon.ico">
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
+</head>
+<body>
+  <h1><script>document.write(GetUrlValue("message"))</script> </h1><br><br>
+  <h1>Add Event</h1>
+<form id="event_form" role="form">
+    <div class="form-group">
+      <label for="event_name">Event name:</label>
+      <input type="text" class="form-control" id="event_name" placeholder="Enter name here">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" id="description" placeholder="Project desicription">
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" class="form-control" id="date" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="start_time">Start time:</label>
+      <select class="form-control" id="start_time">
+        <option value="0">12:00 am</option>
+        <option value="1">12:30 am</option>
+        <option value="2">1:00 am</option>
+        <option value="3">1:30 am</option>
+        <option value="4">2:00 am</option>
+        <option value="5">2:30 am</option>
+        <option value="6">3:00 am</option>
+        <option value="7">3:30 am</option>
+        <option value="8">4:00 am</option>
+        <option value="9">4:30 am</option>
+        <option value="10">5:00 am</option>
+        <option value="11">5:30 am</option>
+        <option value="12">6:00 am</option>
+        <option value="13">6:30 am</option>
+        <option value="14">7:00 am</option>
+        <option value="15">7:30 am</option>
+        <option value="16">8:00 am</option>
+        <option value="17">8:30 am</option>
+        <option value="18">9:00 am</option>
+        <option value="19">9:30 am</option>
+        <option value="20">10:00 am</option>
+        <option value="21">10:30 am</option>
+        <option value="22">11:00 am</option>
+        <option value="23">11:30 am</option>
+        <option value="24">12:00 pm</option>
+        <option value="25">12:30 pm</option>
+        <option value="26">1:00 pm</option>
+        <option value="27">1:30 pm</option>
+        <option value="28">2:00 pm</option>
+        <option value="29">2:30 pm</option>
+        <option value="30">3:00 pm</option>
+        <option value="31">3:30 pm</option>
+        <option value="32">4:00 pm</option>
+        <option value="33">4:30 pm</option>
+        <option value="34">5:00 pm</option>
+        <option value="35">5:30 pm</option>
+        <option value="36">6:00 pm</option>
+        <option value="37">6:30 pm</option>
+        <option value="38">7:00 pm</option>
+        <option value="39">7:30 pm</option>
+        <option value="40">8:00 pm</option>
+        <option value="41">8:30 pm</option>
+        <option value="42">9:00 pm</option>
+        <option value="43">9:30 pm</option>
+        <option value="44">10:00 pm</option>
+        <option value="45">10:30 pm</option>
+        <option value="46">11:00 pm</option>
+        <option value="47">11:30 pm</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="end_time">End time:</label>
+      <select class="form-control" id="end_time">
+        <option value="48">12:00 am</option>
+        <option value="1">12:30 am</option>
+        <option value="2">1:00 am</option>
+        <option value="3">1:30 am</option>
+        <option value="4">2:00 am</option>
+        <option value="5">2:30 am</option>
+        <option value="6">3:00 am</option>
+        <option value="7">3:30 am</option>
+        <option value="8">4:00 am</option>
+        <option value="9">4:30 am</option>
+        <option value="10">5:00 am</option>
+        <option value="11">5:30 am</option>
+        <option value="12">6:00 am</option>
+        <option value="13">6:30 am</option>
+        <option value="14">7:00 am</option>
+        <option value="15">7:30 am</option>
+        <option value="16">8:00 am</option>
+        <option value="17">8:30 am</option>
+        <option value="18">9:00 am</option>
+        <option value="19">9:30 am</option>
+        <option value="20">10:00 am</option>
+        <option value="21">10:30 am</option>
+        <option value="22">11:00 am</option>
+        <option value="23">11:30 am</option>
+        <option value="24">12:00 pm</option>
+        <option value="25">12:30 pm</option>
+        <option value="26">1:00 pm</option>
+        <option value="27">1:30 pm</option>
+        <option value="28">2:00 pm</option>
+        <option value="29">2:30 pm</option>
+        <option value="30">3:00 pm</option>
+        <option value="31">3:30 pm</option>
+        <option value="32">4:00 pm</option>
+        <option value="33">4:30 pm</option>
+        <option value="34">5:00 pm</option>
+        <option value="35">5:30 pm</option>
+        <option value="36">6:00 pm</option>
+        <option value="37">6:30 pm</option>
+        <option value="38">7:00 pm</option>
+        <option value="39">7:30 pm</option>
+        <option value="40">8:00 pm</option>
+        <option value="41">8:30 pm</option>
+        <option value="42">9:00 pm</option>
+        <option value="43">9:30 pm</option>
+        <option value="44">10:00 pm</option>
+        <option value="45">10:30 pm</option>
+        <option value="46">11:00 pm</option>
+        <option value="47">11:30 pm</option>
+      </select>
+    </div>
+    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
+  </form>
+
+  <script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule2";
+  }
+  </script>
+  
+  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/event_form.js"></script>
+  <!--<script type="text/javascript" src="js/webflow.js"></script>-->
+</body>
+</html>

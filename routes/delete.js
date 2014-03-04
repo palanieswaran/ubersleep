@@ -6,7 +6,7 @@ exports.view = function(req, res) {
 
 exports.deleteEvent = function(req, res) {
   var id = req.params.id;
-  console.log(id);
+  console.log("id is: " + id);
   models.Event.find({"_id": id}).remove().exec(afterRemoving);
 
   function afterRemoving(err) {

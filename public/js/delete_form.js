@@ -36,6 +36,7 @@ function GetUrlValue(VarSearch){
 
 
 function deleteEvent(e) {
+console.log("now entering deleteEvent");
 	function GetUrlValue(VarSearch){
 	    var SearchString = window.location.search.substring(1);
 	    var VariableArray = SearchString.split('&');
@@ -47,7 +48,7 @@ function deleteEvent(e) {
 	    }
 	}
 var id = GetUrlValue("id");
-console.log(id);
+console.log("id value in delete_form is: " + id);
 //var date_arr = GetUrlValue("date").split('%');
 //var date_str = "";
 //for (var i = 0; i < date_arr.length - 1; i++) {

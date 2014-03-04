@@ -57,6 +57,24 @@ function addEvent(e) {
 		date_str += (date_arr[i] + " ");
 	}
 	date_str += (date_arr[date_arr.length-1]);
+	console.log("datestr is: " + date_str);
+
+	var month=new Array();
+	month["Jan"]="01";
+	month["Feb"]="02";
+	month["Mar"]="03";
+	month["Apr"]="04";
+	month["May"]="05";
+	month["Jun"]="06";
+	month["Jul"]="07";
+	month["Aug"]="08";
+	month["Sep"]="09";
+	month["Oct"]="10";
+	month["Nov"]="11";
+	month["Dec"]="12";
+	var monthNum = month[date_str.substring(4,7)];
+
+	var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
 
 	if (eventName === "") {
 		alert('Please enter a name for your event');
@@ -67,7 +85,7 @@ function addEvent(e) {
 	else {
 		var json = {
 			'event': eventName,
-			'date': date_str,
+			'date': date_to_check,
 			'description': description,
 			'start_time': parseInt(startTime),
 			'end_time': parseInt(endTime)
