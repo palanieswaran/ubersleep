@@ -16,6 +16,7 @@ var add_sleep = require('./routes/add-sleep');
 var delete_js = require('./routes/delete');
 var add_event2 = require('./routes/add-event');
 var add_sleep2 = require('./routes/add-sleep');
+var add_event_error = require('./routes/add-event-error');
 // var project = require('./routes/project');
 // var palette = require('./routes/palette');
 // Example route
@@ -57,7 +58,7 @@ app.get('/delete', delete_js.view);
 app.get('/schedule2', schedule.view2);
 app.get('/add-event2', add_event.view2);
 app.get('/add-sleep2', add_sleep.view2);
-app.get('/add-event-error/:message', add_event.viewError);
+app.get('/add-event-error', add_event_error.view);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
 app.post('/sleep/new', add_sleep.addsleep);

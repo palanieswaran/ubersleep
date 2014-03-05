@@ -8,6 +8,7 @@ var eventsSchema = new Mongoose.Schema({
 	"end_time": String,
 	"description": String,
 	"date": String,
+	"date_to_check": String
 });
 
 exports.Events = Mongoose.model('Events', eventsSchema);

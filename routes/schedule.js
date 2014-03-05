@@ -97,6 +97,9 @@ exports.view2 = function(req, res) { 
 			var newDateString = fullDay + " " + fullMonth + " " + date.getDate() + ", " + date.getFullYear();
 			console.log(newDateString);
 
+			var lengthOfEvent = events[i]["start_time"] - events[i]["end_time"];
+			events[i]["lengthOfEvent"] = lengthOfEvent;
+
 			if (newDateString === currDate) {
 				events[i]["modifiedDate"] = "";
 				events[i]["links"] = false;

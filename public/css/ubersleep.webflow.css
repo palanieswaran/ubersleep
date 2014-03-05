@@ -532,12 +532,16 @@ p {
     height: 40px;
     margin-right: 5px;
     margin-left: 0px;
-    padding: 18px 40px;
+    padding: 18px 25px;
     float: none;
     border-radius: 5px;
     background-color: #b3eb0c;
     font-family: Montserrat, sans-serif;
     font-size: 14px;
     text-decoration: none;
+  }
+
+  .length-2 {
+    background-color: #b3eb0c;
   }
 }
