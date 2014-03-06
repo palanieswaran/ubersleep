@@ -67,6 +67,8 @@ exports.view2 = function(req, res) { 
 
 	function renderEvent(err, events) {
 		var currDate = "";
+		//set to start time initially, so that first event fills in previous hours
+		var prev_end_time = events[0]["start_time"];
 		for (var i = 0; i < events.length; i++) {
 			var date = events[i]["date"];
 			var month=new Array();
@@ -109,6 +111,10 @@ exports.view2 = function(req, res) { 
 				events[i]["links"] = true;
 				//events[i]["links"] = "<a id= \"add_ev\"  href=\"event-form2?date={{date}}\"> Add Event</a>    <a id= \"add_sl\"  href=\"sleep-form2?date={{date}}\"> Add Sleep</a>"
 			}
+
+			events[i]["prev_end_time"] = prev_end_time;
+			prev_end_time = events[i]["end_time"];
+
 		}
 		res.render('schedule2', {'events': events});
 	}
