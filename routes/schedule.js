@@ -58,7 +58,7 @@ exports.view = function(req, res) { 
 
 exports.view2 = function(req, res) { 
   var form_data = req.body;
-  console.log("backend" + form_data);
+  console.log("backend view2" + form_data);
 	models.Event
 		.find()
 		.sort('date')
@@ -68,7 +68,10 @@ exports.view2 = function(req, res) { 
 	function renderEvent(err, events) {
 		var currDate = "";
 		//set to start time initially, so that first event fills in previous hours
-		var prev_end_time = events[0]["start_time"];
+		var prev_end_time = "";
+		if (events.length > 0) {
+			prev_end_time = events[0]["start_time"];
+		}
 		for (var i = 0; i < events.length; i++) {
 			var date = events[i]["date"];
 			var month=new Array();

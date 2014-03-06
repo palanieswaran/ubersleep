@@ -65,6 +65,7 @@ app.post('/sleep/new', add_sleep.addsleep);
 app.post('/delete/:id/deleteEvent', delete_js.deleteEvent);
 
 
+
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);
 // Example route

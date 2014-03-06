@@ -78,9 +78,11 @@ function addEvent(e) {
 
 	if (eventName === "") {
 		alert('Please enter a name for your event');
+		e.preventDefault();
 	}
 	else if (parseInt(startTime) >= parseInt(endTime)) {
 		alert('Please enter a start time that is before the end time');
+		e.preventDefault();
 	}
 	else {
 		var json = {
@@ -90,11 +92,9 @@ function addEvent(e) {
 			'start_time': parseInt(startTime),
 			'end_time': parseInt(endTime)
 		};
-		$.post('/event/new', json, function() {
-			var result = !{res};
+		/*$.post('/event/new', json, function() {
 			console.log("result is: " + res);
-			//window.location.href = result; // reload the page
-		});
-
+			window.location.href = schedule2; // reload the page
+		});*/
 	}
 }

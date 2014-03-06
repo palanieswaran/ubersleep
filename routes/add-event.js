@@ -14,10 +14,23 @@ exports.viewError = function(req, res) {
 }
 
 exports.add = function(req, res) {
-  var form_data = req.body;
-  console.log(form_data);
+  console.log("req: " + req);
+  console.log("res: " + res);
+  var event_name = req.params.event_name;
+  console.log("params: " + req.params.length);
+  var description = req.params.desc;
+  var date = req.params.date;
+  console.log("date: " + date);
+  var start_time = req.params.start_time;
+  var end_time = req.params.end_time;
+  var date_to_check = date.substring(0);
 
-  console.log("the date that will be printed is: " + form_data["date"]);
+  console.log("entered add-event.add");
+
+  //var form_data = req.body;
+  //console.log(form_data);
+
+  //console.log("the date that will be printed is: " + form_data["date"]);
   //models.Event.find({}).exec(queryTest);
   //models.Project.find({"date": form_data["date"]}).exec(afterQuery);
 
@@ -28,17 +41,17 @@ exports.add = function(req, res) {
     console.log("here is a sample date2: " + events[9]["date_to_check2"]);
   }
 
-  var date = form_data["date"];
-  var date_to_check = date.substring(0);
-  console.log("here is our date to check: " + date_to_check);
+  //var date = form_data["date"];
+  //var date_to_check = date.substring(0);
+  //console.log("here is our date to check: " + date_to_check);
 
 //start time: fd[st] OR end time: fd[et] OR (s_t gt fd[st] AND s_t lt fd[et]) OR (s_t lt fd[st] AND e_t gt fd[st]) OR 
 // (et lt fd[et] AND et gt fd[st]) OR (et gt fd[et] AND st lt fd[et]) OR (st lt fd[et] AND et gt fd[st]) OR (et gt fd[st] AND st lt fd[et])
 
 //issues with the start times and end times being stored as strings vs ints?
   
-  var start_time = form_data["start_time"];
-  var end_time = form_data["end_time"];
+  //var start_time = form_data["start_time"];
+  //var end_time = form_data["end_time"];
 
   console.log("event to be added start time: " + start_time);
   console.log("event to be added end time: " + end_time);
@@ -68,11 +81,11 @@ exports.add = function(req, res) {
     } else {
       console.log("entered else");
       var newEvent = new models.Event({
-      "event": form_data["event"],
-      "date": form_data["date"],
-      "description": form_data["description"],
-      "start_time": form_data["start_time"],
-      "end_time": form_data["end_time"],
+      "event": event_name,
+      "date": date,
+      "description": description,
+      "start_time": start_time,
+      "end_time": end_time,
       //why is this field always undefined???? maybe we need to tell the JSON to expect it.
       "date_to_check": date_to_check
       });
@@ -82,7 +95,7 @@ exports.add = function(req, res) {
       function afterSaving(err) {
         console.log("addEvent");
         if (err) {console.log(err); res.send(500); }
-        res.render('event_form2', {res: 'schedule2'});
+        res.redirect('schedule2');
       }
     }
   }

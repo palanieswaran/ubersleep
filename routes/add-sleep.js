@@ -172,7 +172,8 @@ exports.addsleep = function(req, res) {
 			// I think I have to create an ever growing array where i add in the start time
 			// and end time of each sleep block I allocate, and then I check to make sure
 			// in the if statement that I am not within 4 of ANY of those numbers
-			var prev_arr = [];
+			var prev_start_arr = [];
+			var prev_end_arr = [];
 			for (var i = 0; i < sleep_times.length; i++) {
 				var slot_found = "no";
 				//sorted map contains in order, indices that correspond to the indices in st_map (for the start) and len_map (for the length)
@@ -185,12 +186,26 @@ exports.addsleep = function(req, res) {
 						var adjusted_found = 0;
 			//if st_map[...] is within 4 of any elements of prev_arr
 						for (var a = 0; a < prev_arr.length; a++) {
+							if ((st_map[sortedmap[j]] + sleep_times[i] + 4) <= prev_start_arr[a]) {
+								curr_best_start = st_map[sortedmap[j]];
+							} else {
+								spot_too_close = "yes";
+								break;
+							}
+						}
+						if (spot_too_close == "yes") {
+							spot_too_close == "no";
+							continue;
+						}
 							//or if the end time st_map[sortedmap[j]] + sleep_times[i] is close to one
 
 							// HERE YOU EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPLEMENT 2 COMMENTS BELOW, YOU GOT IT.
 							// if stmap - prev is negative, we handle differently. if positive, handle this way.
-							// if its negative then it needs to be > -4 and less than 0. in that case, immediately reject. 
-							if ((Math.abs(st_map[sortedmap[j]] - prev_arr[a]) < 4) OR (Math.abs((st_map[sortedmap[j]] + sleep_times[i]) - prev_arr[a]) < 4)) {
+							// if its negative then it needs to be > -4 and less than 0. in that case, immediately reject.
+				//if (st_map[sortedmap[j]] - prev_arr[a])
+							// negative case: if prev arr is an end, then st_map - prev_arr = 0 and that's fine. if prev arr
+							// is a start, then st_map - prev_arr is ch
+							if ((Math.abs(st_map[sortedmap[j]] - prev_arr[a]) < 4) /*OR (Math.abs((st_map[sortedmap[j]] + sleep_times[i]) - prev_arr[a]) < 4)*/) {
 								console.log("I ENTERED THE FIRST IF!")
 								//below is not kosher either, because the end time is too close
 								//below is only relevant for the tail end, as in when the new event added is AFTER prev_arr[a].
@@ -281,4 +296,3 @@ exports.addsleep = function(req, res) {
 			res.redirect("schedule2");
 			}
 		}
-}

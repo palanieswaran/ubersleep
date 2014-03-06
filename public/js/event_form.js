@@ -18,7 +18,7 @@ function initializePage() {
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
 	//$("#submitBtn").click(addEvent); 
-	$('#submitBtn').click(addEvent); 
+	//$('#submitBtn').click(addEvent); 
 	$('#scheduleBtn').click(goBackToSchedule);
 }
 
@@ -57,9 +57,11 @@ function addEvent(e) {
 
 	if (eventName === "") {
 		alert('Please enter a name for your event');
+		e.preventDefault();
 	}
 	else if (parseInt(startTime) >= parseInt(endTime)) {
 		alert('Please enter a start time that is before the end time');
+		e.preventDefault();
 	}
 	else {
 		var json = {
