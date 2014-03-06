@@ -40,34 +40,55 @@ exports.add = function(req, res) {
   var start_time = form_data["start_time"];
   var end_time = form_data["end_time"];
 
-  var addEvent = true;
+  console.log("event to be added start time: " + start_time);
+  console.log("event to be added end time: " + end_time);
 
-  /*models.Event.find({"date_to_check": date_to_check,
+  models.Event.find({"date_to_check": date_to_check,
         $or: [ {"start_time": start_time},
-              {"end_time: ": end_time},
-              {"start_time": { $gt: start_time}, "start_time": { $lt: end_time}},
-              {"start_time": { $lt: start_time}, "end_time": { $gt: start_time}},
-              {"end_time": { $lt: end_time}, "end_time": { $gt: start_time}},
-              {"end_time": { $gt: end_time}, "start_time": { $lt: end_time}},
-              {"start_time": { $lt: end_time}, "end_time": { $gt: start_time}},
-              {"end_time": { $gt: start_time}, "start_time": { $lt: end_time}}
+              {"end_time:": end_time},
+              { $and: [ {"start_time": { $gt: start_time}}, {"start_time": { $lt: end_time}}]},
+              { $and: [ {"start_time": { $lt: start_time }}, {"end_time": { $gt: start_time}}]},
+              { $and: [ {"end_time": { $lt: end_time}}, {"end_time": { $gt: start_time}}]},
+              { $and: [ {"end_time": { $gt: end_time}}, {"start_time": { $lt: end_time}}]},
+              { $and: [ {"start_time": { $lt: end_time}}, {"end_time": { $gt: start_time}}]},
+              { $and: [ {"end_time": { $gt: start_time}}, {"start_time": { $lt: end_time}}]}
               ] }).exec(checkOverlap);
 
   function checkOverlap(err, events) {
-
+    console.log("here is length of events after the query: " + events.length);
     if(err) console.log(err);
     //if this has anything, we have an overlap so redirect back to schedule, can we send a message?
     if (events.length > 0) {
-      addEvent = false;
-      res.redirect('add-event-error');      
-      //$.get('/add-event-error/:message', function() {
-      //window.location.href = 'add-event-error';
-      //});
-    }
-  }*/
+      for (var i = 0; i < events.length; i++) {
+        console.log("These are the events that are overlapaping: ")
+        console.log(events[i]);
+      }
+      var message = 'message';
+      res.redirect('add-event-error/' + message);
+    } else {
+      console.log("entered else");
+      var newEvent = new models.Event({
+      "event": form_data["event"],
+      "date": form_data["date"],
+      "description": form_data["description"],
+      "start_time": form_data["start_time"],
+      "end_time": form_data["end_time"],
+      //why is this field always undefined???? maybe we need to tell the JSON to expect it.
+      "date_to_check": date_to_check
+      });
 
-  if (addEvent === true) {
-    var newEvent = new models.Event({
+      newEvent.save(afterSaving);
+
+      function afterSaving(err) {
+        console.log("addEvent");
+        if (err) {console.log(err); res.send(500); }
+        res.render('event_form2', {res: 'schedule2'});
+      }
+    }
+  }
+
+
+    /*var newEvent = new models.Event({
       "event": form_data["event"],
       "date": form_data["date"],
       "description": form_data["description"],
@@ -92,7 +113,7 @@ exports.add = function(req, res) {
         window.location.href = 'schedule?' + dateToSend; // reload the page
       });*/
     
-    }
-  }
+    //}
+  
 }
 

@@ -91,7 +91,9 @@ function addEvent(e) {
 			'end_time': parseInt(endTime)
 		};
 		$.post('/event/new', json, function() {
-			window.location.href = 'schedule2'; // reload the page
+			var result = !{res};
+			console.log("result is: " + res);
+			//window.location.href = result; // reload the page
 		});
 
 	}

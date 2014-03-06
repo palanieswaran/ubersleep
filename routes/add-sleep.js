@@ -169,18 +169,76 @@ exports.addsleep = function(req, res) {
 			var schedule_possible = "yes";
 			console.log("sleep times length is: " + sleep_times.length);
 			console.log("sortedmap length is: " + sortedmap.length);
+			// I think I have to create an ever growing array where i add in the start time
+			// and end time of each sleep block I allocate, and then I check to make sure
+			// in the if statement that I am not within 4 of ANY of those numbers
+			var prev_arr = [];
 			for (var i = 0; i < sleep_times.length; i++) {
 				var slot_found = "no";
 				//sorted map contains in order, indices that correspond to the indices in st_map (for the start) and len_map (for the length)
 				for (var j = 0; j < sortedmap.length; j++) {
 					console.log("iteration " + j + ": current sleep time = " + sleep_times[i] + " , current len_map = " + len_map[sortedmap[j]] + " , current start time = " + st_map[sortedmap[j]]);
+					var spot_too_close = "no";
 					if (sleep_times[i] <= len_map[sortedmap[j]]) {
+						//if both of the following conditions, then sleep cannot be spread out enough and this slot is skipped
+						var adjusted_start_time = 0;
+						var adjusted_found = 0;
+			//if st_map[...] is within 4 of any elements of prev_arr
+						for (var a = 0; a < prev_arr.length; a++) {
+							//or if the end time st_map[sortedmap[j]] + sleep_times[i] is close to one
+
+							// HERE YOU EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPLEMENT 2 COMMENTS BELOW, YOU GOT IT.
+							// if stmap - prev is negative, we handle differently. if positive, handle this way.
+							// if its negative then it needs to be > -4 and less than 0. in that case, immediately reject. 
+							if ((Math.abs(st_map[sortedmap[j]] - prev_arr[a]) < 4) OR (Math.abs((st_map[sortedmap[j]] + sleep_times[i]) - prev_arr[a]) < 4)) {
+								console.log("I ENTERED THE FIRST IF!")
+								//below is not kosher either, because the end time is too close
+								//below is only relevant for the tail end, as in when the new event added is AFTER prev_arr[a].
+								//but what about when before?
+								//I think any time this shit is too close before, this caveat is not in play
+								if (len_map[sortedmap[j]] >= ((4 - Math.abs(st_map[sortedmap[j]] - prev_arr[a])) + sleep_times[i])) {
+									console.log("I ENTERED THE SECOND!");
+									//if you're too close to any of the prev_arr, it's no good.
+									spot_too_close = "yes";
+									break;
+								} else {
+									console.log("I ENTERED THE THIRD");
+									//we enter here if our start spot is within 4 of another sleep time,
+									// but the length of the start spot is long enough that we can start 4 past it
+									adjusted_start_time = st_map[sortedmap[j]] + (4 - (Math.abs(st_map[sortedmap[j]] - prev_arr[a])));
+									console.log("abs is: " + (Math.abs(st_map[sortedmap[j]] - prev_arr[a])));
+									//we did find a time that is close to this a but not screwing us. so this is the option to ultimately go with,
+									// but we still do need to check the others aren't screwing us
+									adjusted_found = adjusted_start_time;
+								}
+							} else {
+								console.log("I ENTERED THE REGULAR ONE!");
+								adjusted_start_time = st_map[sortedmap[j]];
+							}
+						}
+						if (spot_too_close == "yes") {
+							spot_too_close = "no";
+							continue;
+						}
+						console.log("adjusted found is: " + adjusted_found);
+						if (adjusted_found != 0) {
+							adjusted_start_time = adjusted_found;
+						}
+						if (prev_arr.length == 0) {
+							adjusted_start_time = st_map[sortedmap[j]];
+						}
+						//add start and end times to prev_arr
+						prev_arr.push(adjusted_start_time);
+						prev_arr.push(adjusted_start_time + sleep_times[i]);
 						//add it to the final map
-						finalMap[st_map[sortedmap[j]]] = st_map[sortedmap[j]] + sleep_times[i];
-						console.log("Start time for block " + i + " is " + st_map[sortedmap[j]] + " and end time is " + finalMap[st_map[sortedmap[j]]]);
+						finalMap[adjusted_start_time] = adjusted_start_time + sleep_times[i];
+						console.log("Start time for block " + i + " is " + st_map[sortedmap[j]] + " and end time is " + finalMap[adjusted_start_time]);
 						//now that slot is no longer available, so remove it from st_map and len_map
+						//this was a length that corresponded with the value of st_map[sortedmap[j]]
 						len_map[sortedmap[j]] = len_map[sortedmap[j]] - sleep_times[i];
-						st_map[sortedmap[j]] = st_map[sortedmap[j]] + sleep_times[i];
+
+						len_map[sortedmap[j]] = len_map[sortedmap[j]] - sleep_times[i] + (st_map[sortedmap[j]] - adjusted_start_time);
+						st_map[sortedmap[j]] = adjusted_start_time + sleep_times[i];
 						slot_found = "yes";
 						break;
 					}
@@ -193,7 +251,6 @@ exports.addsleep = function(req, res) {
 			if (schedule_possible == "no") {
 				console.log("not possible");
 			} else {
-
 				var curr_start = 0;
 				var curr_end = 0;
 				for (var i = 0; i < sleep_times.length; i++) {
