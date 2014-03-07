@@ -113,7 +113,9 @@ function reloadSchedule()
         }
         if (hoursFromMidnight > 12) {
           hoursFromMidnight = hoursFromMidnight - 12;
-          amOrPm = "PM";
+          if (hoursFromMidnight > 11) {
+              amOrPm = "PM";
+          }
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
@@ -149,7 +151,9 @@ function reloadSchedule()
         }
         if (hoursFromMidnight > 12) {
           hoursFromMidnight = hoursFromMidnight - 12;
-          amOrPm = "PM";
+          if (hoursFromMidnight > 11) {
+              amOrPm = "PM";
+          } 
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }

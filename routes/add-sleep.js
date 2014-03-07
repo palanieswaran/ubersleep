@@ -244,7 +244,7 @@ exports.addsleep = function(req, res) {
 							curr_end = finalMap[j];
 							console.log("start of sleep is " + j + " and will last until " + curr_end);
 							var newEvent = new models.Event({
-							    "event": "Sleep " + i,
+							    "event": "Sleep " + (i + 1),
 							    "date": form_data["date"],
 							    "description": "Sleep cycle!",
 							    "start_time": j,
