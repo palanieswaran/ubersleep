@@ -68,7 +68,14 @@
 
       var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
 
-      var event_name = GetUrlValue("event");
+      var event_name_preparse = GetUrlValue("event");
+      var event_arr = event_name_preparse.split('%20');
+      var event_name = "";
+      for (var i = 0; i < event_arr.length - 1; i++) {
+        event_name += (event_arr[i] + " ");
+      }
+      event_name += (event_arr[event_arr.length-1]);
+
       var start_time = GetUrlValue("start_time");
       var end_time = GetUrlValue("end_time");
       </script>
@@ -273,7 +280,15 @@
       var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
 
       var desc = GetUrlValue("desc");
-      var event_name = GetUrlValue("event");
+      
+      var event_name_preparse = GetUrlValue("event");
+      var event_arr = event_name_preparse.split('%20');
+      var event_name = "";
+      for (var i = 0; i < event_arr.length - 1; i++) {
+        event_name += (event_arr[i] + " ");
+      }
+      event_name += (event_arr[event_arr.length-1]);
+
       var id = GetUrlValue("id");
 
       document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");

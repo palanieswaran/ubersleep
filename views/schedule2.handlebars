@@ -119,6 +119,11 @@ function reloadSchedule()
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
+
+        if (hoursFromMidnight > 11) {
+              amOrPm = "PM";
+        }
+  
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
@@ -157,6 +162,11 @@ function reloadSchedule()
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
+        
+        if (hoursFromMidnight > 11) {
+              amOrPm = "PM";
+        }
+
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
