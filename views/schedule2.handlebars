@@ -113,15 +113,15 @@ function reloadSchedule()
         }
         if (hoursFromMidnight > 12) {
           hoursFromMidnight = hoursFromMidnight - 12;
-          if (hoursFromMidnight > 11) {
-              amOrPm = "PM";
-          }
+          amOrPM = "PM";
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
 
         if (hoursFromMidnight > 11) {
-              amOrPm = "PM";
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
         }
   
         var returnValue = hoursFromMidnight + minutes + amOrPm;
@@ -156,15 +156,15 @@ function reloadSchedule()
         }
         if (hoursFromMidnight > 12) {
           hoursFromMidnight = hoursFromMidnight - 12;
-          if (hoursFromMidnight > 11) {
-              amOrPm = "PM";
-          } 
+          amOrPm = "PM";
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
         
         if (hoursFromMidnight > 11) {
-              amOrPm = "PM";
+            amOrPm = "PM";
+            var returnValue = hoursFromMidnight + minutes + amOrPm;
+            return returnValue;
         }
 
         var returnValue = hoursFromMidnight + minutes + amOrPm;

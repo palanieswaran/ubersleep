@@ -75,6 +75,7 @@
         event_name += (event_arr[i] + " ");
       }
       event_name += (event_arr[event_arr.length-1]);
+      console.log("this is the event name" + event_name);
 
       var start_time = GetUrlValue("start_time");
       var end_time = GetUrlValue("end_time");
@@ -101,6 +102,13 @@
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
+        
+        if (hoursFromMidnight > 11) {
+            amOrPm = "PM";
+            var returnValue = hoursFromMidnight + minutes + amOrPm;
+            return returnValue;
+        }
+
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
@@ -128,6 +136,13 @@
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
+        
+        if (hoursFromMidnight > 11) {
+            amOrPm = "PM";
+            var returnValue = hoursFromMidnight + minutes + amOrPm;
+            return returnValue;
+        }
+
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
@@ -278,22 +293,19 @@
       var monthNum = month[date_str.substring(4,7)];
 
       var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
-
-      var desc = GetUrlValue("desc");
       
-      var event_name_preparse = GetUrlValue("event");
-      var event_arr = event_name_preparse.split('%20');
-      var event_name = "";
-      for (var i = 0; i < event_arr.length - 1; i++) {
-        event_name += (event_arr[i] + " ");
-      }
-      event_name += (event_arr[event_arr.length-1]);
+      var event_name2 = GetUrlValue("event");
+
+
+      var desc2 = GetUrlValue("desc");
 
       var id = GetUrlValue("id");
 
+      console.log(event_name2);
+
       document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");
-      document.write("<input type=\"hidden\" id=\"event_name\" name=\"event_name\" value=" + event_name + ">");
-      document.write("<input type=\"hidden\" id=\"desc\" name=\"desc\" value=" + desc + ">");
+      document.write("<input type=\"hidden\" id=\"event_name\" name=\"event_name\" value=" + event_name2 + ">");
+      document.write("<input type=\"hidden\" id=\"desc\" name=\"desc\" value=" + desc2 + ">");
       document.write("<input type=\"hidden\" id=\"_id\" name=\"_id\" value=" + id + ">");
       </script>
     <br><br><center><button id="submitBtn" type="submit" class="btn btn-default btn-lg"><font class = "swag_font_5">Edit Event</button></center>

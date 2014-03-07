@@ -9,8 +9,24 @@ exports.viewError = function(req, res) {
 }
 
 exports.edit = function(req, res) {
-  var event_name = req.body.event_name;
-  var description = req.body.desc;
+  var event_name_preparse2 = req.body.event_name;
+
+  var event_arr2 = event_name_preparse2.split('%20');
+  var event_name2 = "";
+  for (var i = 0; i < event_arr2.length - 1; i++) {
+    event_name2 += (event_arr2[i] + " ");
+  }
+  event_name2 += (event_arr2[event_arr2.length-1]);
+
+  var desc_preparse = req.body.desc;
+
+  var desc_arr2 = desc_preparse.split('%20');
+  var desc2 = "";
+  for (var i = 0; i < desc_arr2.length - 1; i++) {
+    desc2 += (desc_arr2[i] + " ");
+  }
+  desc2 += (desc_arr2[desc_arr2.length-1]);
+
   var id = req.body._id;
   var date = req.body.date;
   var start_time = req.body.start_time;
@@ -53,9 +69,9 @@ exports.edit = function(req, res) {
       function afterRemoving(err) {
         if (err) {console.log(err); res.send(500);}
         var newEvent = new models.Event({
-        "event": event_name,
+        "event": event_name2,
         "date": date,
-        "description": description,
+        "description": desc2,
         "start_time": start_time,
         "end_time": end_time,
         //why is this field always undefined???? maybe we need to tell the JSON to expect it.
