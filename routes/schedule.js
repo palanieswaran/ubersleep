@@ -73,6 +73,7 @@ exports.view2 = function(req, res) { 
 			prev_end_time = events[0]["start_time"];
 		}
 		for (var i = 0; i < events.length; i++) {
+			console.log(events[i]["_id"]);
 			var date = events[i]["date"];
 			var month=new Array();
 			month[0]="January";

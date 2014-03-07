@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Wed Feb 12 2014 23:47:43 GMT+0000 (UTC) -->
+<html data-wf-site="52f3116d5d8eed2b6b00065c">
+<head>
+  <meta charset="utf-8">
+  <title>Sleeprite - Add Event</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700","Bitter:400,700","Lato:100,300,400,700,900"]
+      }
+    });
+  </script>
+  <script>
+    if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';
+  </script>
+  <link rel="shortcut icon" type="image/x-icon" href="https://y7v4p6k4.ssl.hwcdn.net/placeholder/favicon.ico">
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
+</head>
+<body>
+  <h1>Edit Event</h1>
+
+  <script>
+
+      function GetUrlValue(VarSearch){
+        var SearchString = window.location.search.substring(1);
+        var VariableArray = SearchString.split('&');
+        for(var i = 0; i < VariableArray.length; i++){
+          var KeyValuePair = VariableArray[i].split('=');
+          if(KeyValuePair[0] == VarSearch){
+            return KeyValuePair[1];
+          }
+        }
+      }
+
+      var date = GetUrlValue("date");
+
+      var date_arr = GetUrlValue("date").split('%20');
+      var date_str = "";
+      for (var i = 0; i < date_arr.length - 1; i++) {
+        date_str += (date_arr[i] + " ");
+      }
+      console.log("datestr is: " + date_str);
+
+      var month=new Array();
+      month["Jan"]="01";
+      month["Feb"]="02";
+      month["Mar"]="03";
+      month["Apr"]="04";
+      month["May"]="05";
+      month["Jun"]="06";
+      month["Jul"]="07";
+      month["Aug"]="08";
+      month["Sep"]="09";
+      month["Oct"]="10";
+      month["Nov"]="11";
+      month["Dec"]="12";
+      var monthNum = month[date_str.substring(4,7)];
+
+      var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
+
+      var event_name = GetUrlValue("event");
+      var start_time = GetUrlValue("start_time");
+      var end_time = GetUrlValue("end_time");
+      </script>
+      <p><script>
+
+      function getStartTime(time) {
+        //html here could return for (i = {{prev_end_time}}, < {{start_time}})), "i: <br>"
+        var minutesFromMidnight = 30 * time;
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 12) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+
+
+      function getEndTime(time) {
+        if (time == 48) {
+          return "12:00AM"
+        }
+        var minutesFromMidnight = 30 * time;
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 12) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+
+      document.write("<b>" + event_name + "</b> is currently on <b>" + date_to_check + "</b> from <b>" + getStartTime(start_time) + "</b> to <b>" + getEndTime(end_time) + "</b>.");</script></p>
+  
+<form id="event_form" role="form" method = "post" action = "/edit/new">
+    <div class="form-group">
+      <label for="start_time">New Start time:</label>
+      <select class="form-control" id="start_time" name="start_time">
+        <option value="0">12:00 am</option>
+        <option value="1">12:30 am</option>
+        <option value="2">1:00 am</option>
+        <option value="3">1:30 am</option>
+        <option value="4">2:00 am</option>
+        <option value="5">2:30 am</option>
+        <option value="6">3:00 am</option>
+        <option value="7">3:30 am</option>
+        <option value="8">4:00 am</option>
+        <option value="9">4:30 am</option>
+        <option value="10">5:00 am</option>
+        <option value="11">5:30 am</option>
+        <option value="12">6:00 am</option>
+        <option value="13">6:30 am</option>
+        <option value="14">7:00 am</option>
+        <option value="15">7:30 am</option>
+        <option value="16">8:00 am</option>
+        <option value="17">8:30 am</option>
+        <option value="18">9:00 am</option>
+        <option value="19">9:30 am</option>
+        <option value="20">10:00 am</option>
+        <option value="21">10:30 am</option>
+        <option value="22">11:00 am</option>
+        <option value="23">11:30 am</option>
+        <option value="24">12:00 pm</option>
+        <option value="25">12:30 pm</option>
+        <option value="26">1:00 pm</option>
+        <option value="27">1:30 pm</option>
+        <option value="28">2:00 pm</option>
+        <option value="29">2:30 pm</option>
+        <option value="30">3:00 pm</option>
+        <option value="31">3:30 pm</option>
+        <option value="32">4:00 pm</option>
+        <option value="33">4:30 pm</option>
+        <option value="34">5:00 pm</option>
+        <option value="35">5:30 pm</option>
+        <option value="36">6:00 pm</option>
+        <option value="37">6:30 pm</option>
+        <option value="38">7:00 pm</option>
+        <option value="39">7:30 pm</option>
+        <option value="40">8:00 pm</option>
+        <option value="41">8:30 pm</option>
+        <option value="42">9:00 pm</option>
+        <option value="43">9:30 pm</option>
+        <option value="44">10:00 pm</option>
+        <option value="45">10:30 pm</option>
+        <option value="46">11:00 pm</option>
+        <option value="47">11:30 pm</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="end_time">New End time:</label>
+      <select class="form-control" id="end_time" name="end_time">
+        <option value="48">12:00 am</option>
+        <option value="1">12:30 am</option>
+        <option value="2">1:00 am</option>
+        <option value="3">1:30 am</option>
+        <option value="4">2:00 am</option>
+        <option value="5">2:30 am</option>
+        <option value="6">3:00 am</option>
+        <option value="7">3:30 am</option>
+        <option value="8">4:00 am</option>
+        <option value="9">4:30 am</option>
+        <option value="10">5:00 am</option>
+        <option value="11">5:30 am</option>
+        <option value="12">6:00 am</option>
+        <option value="13">6:30 am</option>
+        <option value="14">7:00 am</option>
+        <option value="15">7:30 am</option>
+        <option value="16">8:00 am</option>
+        <option value="17">8:30 am</option>
+        <option value="18">9:00 am</option>
+        <option value="19">9:30 am</option>
+        <option value="20">10:00 am</option>
+        <option value="21">10:30 am</option>
+        <option value="22">11:00 am</option>
+        <option value="23">11:30 am</option>
+        <option value="24">12:00 pm</option>
+        <option value="25">12:30 pm</option>
+        <option value="26">1:00 pm</option>
+        <option value="27">1:30 pm</option>
+        <option value="28">2:00 pm</option>
+        <option value="29">2:30 pm</option>
+        <option value="30">3:00 pm</option>
+        <option value="31">3:30 pm</option>
+        <option value="32">4:00 pm</option>
+        <option value="33">4:30 pm</option>
+        <option value="34">5:00 pm</option>
+        <option value="35">5:30 pm</option>
+        <option value="36">6:00 pm</option>
+        <option value="37">6:30 pm</option>
+        <option value="38">7:00 pm</option>
+        <option value="39">7:30 pm</option>
+        <option value="40">8:00 pm</option>
+        <option value="41">8:30 pm</option>
+        <option value="42">9:00 pm</option>
+        <option value="43">9:30 pm</option>
+        <option value="44">10:00 pm</option>
+        <option value="45">10:30 pm</option>
+        <option value="46">11:00 pm</option>
+        <option value="47">11:30 pm</option>
+      </select>
+    </div>
+      <script>
+
+      function GetUrlValue(VarSearch){
+        var SearchString = window.location.search.substring(1);
+        var VariableArray = SearchString.split('&');
+        for(var i = 0; i < VariableArray.length; i++){
+          var KeyValuePair = VariableArray[i].split('=');
+          if(KeyValuePair[0] == VarSearch){
+            return KeyValuePair[1];
+          }
+        }
+      }
+
+      var date = GetUrlValue("date");
+      var date_arr = GetUrlValue("date").split('%20');
+      var date_str = "";
+      for (var i = 0; i < date_arr.length - 1; i++) {
+        date_str += (date_arr[i] + " ");
+      }
+      console.log("datestr is: " + date_str);
+
+      var month=new Array();
+      month["Jan"]="01";
+      month["Feb"]="02";
+      month["Mar"]="03";
+      month["Apr"]="04";
+      month["May"]="05";
+      month["Jun"]="06";
+      month["Jul"]="07";
+      month["Aug"]="08";
+      month["Sep"]="09";
+      month["Oct"]="10";
+      month["Nov"]="11";
+      month["Dec"]="12";
+      var monthNum = month[date_str.substring(4,7)];
+
+      var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
+
+      var desc = GetUrlValue("desc");
+      var event_name = GetUrlValue("event");
+      var id = GetUrlValue("id");
+
+      document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");
+      document.write("<input type=\"hidden\" id=\"event_name\" name=\"event_name\" value=" + event_name + ">");
+      document.write("<input type=\"hidden\" id=\"desc\" name=\"desc\" value=" + desc + ">");
+      document.write("<input type=\"hidden\" id=\"_id\" name=\"_id\" value=" + id + ">");
+      </script>
+    <br><br><button id="submitBtn" type="submit" class="button">Edit Event</button>
+  </form>
+
+  <script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule2";
+  }
+  </script>
+  
+  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/event_form2.js"></script>
+  <!--<script type="text/javascript" src="js/webflow.js"></script>-->
+</body>
+</html>
