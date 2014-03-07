@@ -29,10 +29,25 @@
 </head>
 <body class = "bground">
   <script src="js/delete_form.js"></script>
+  <script>
+  	function getEvent() {
+
+  		var event_name_preparse2 = GetUrlValue("event");
+
+  		var event_arr2 = event_name_preparse2.split('%20');
+  		var event_name2 = "";
+  		for (var i = 0; i < event_arr2.length - 1; i++) {
+    		event_name2 += (event_arr2[i] + " ");
+  		}
+  		event_name2 += (event_arr2[event_arr2.length-1]);
+  		return event_name2;
+  	}
+
+  </script>
 
 
   <h1 class = "swag_font">Delete Event</h1>
-  <font class = "swag_font_2"><p><script>document.write("Event Name: " + GetUrlValue("event"))</script> </p</font>
+  <font class = "swag_font_2"><p><script>document.write("Event Name: " + getEvent())</script> </p</font>
    
 <center><button id="deleteBtn" type="button" class="btn btn-danger btn-lg"><font class = "swag_font_5_white">Delete</font></button></center>
 

@@ -82,9 +82,9 @@
       </script>
       <p><script>
 
-      function getStartTime(time) {
+            function getStartTime(start_time) {
         //html here could return for (i = {{prev_end_time}}, < {{start_time}})), "i: <br>"
-        var minutesFromMidnight = 30 * time;
+        var minutesFromMidnight = 30 * start_time;
         var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
         var minutes = ":00";
         var amOrPm = "AM";
@@ -96,29 +96,26 @@
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
-        if (hoursFromMidnight > 12) {
-          hoursFromMidnight = hoursFromMidnight - 12;
-          amOrPm = "PM";
-          var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
-        }
-        
-        if (hoursFromMidnight > 11) {
-            amOrPm = "PM";
-            var returnValue = hoursFromMidnight + minutes + amOrPm;
-            return returnValue;
-        }
 
+        if (hoursFromMidnight > 11) {
+          if (hoursFromMidnight > 12) {
+            hoursFromMidnight = hoursFromMidnight - 12;
+            amOrPM = "PM";
+          }
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+  
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
 
-
-      function getEndTime(time) {
-        if (time == 48) {
+      function getEndTime(end_time) {
+        if (end_time == 48) {
           return "12:00AM"
         }
-        var minutesFromMidnight = 30 * time;
+        var minutesFromMidnight = 30 * end_time;
         var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
         var minutes = ":00";
         var amOrPm = "AM";

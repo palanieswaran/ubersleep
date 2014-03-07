@@ -111,14 +111,12 @@ function reloadSchedule()
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
         }
-        if (hoursFromMidnight > 12) {
-          hoursFromMidnight = hoursFromMidnight - 12;
-          amOrPM = "PM";
-          var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
-        }
 
         if (hoursFromMidnight > 11) {
+          if (hoursFromMidnight > 12) {
+            hoursFromMidnight = hoursFromMidnight - 12;
+            amOrPM = "PM";
+          }
           amOrPm = "PM";
           var returnValue = hoursFromMidnight + minutes + amOrPm;
           return returnValue;
@@ -184,8 +182,8 @@ function reloadSchedule()
           document.write('<div class="wrapper length-' + {{lengthOfEvent}} + "-" + {{sleepOrNot}} + '">');</script>
     <div class = "span">
       <font color="black"><b>Event:</b> {{event}}&nbsp&nbsp&nbsp
-      <b>Start time:  </b> <script>document.write(getStartTime())</script>&nbsp&nbsp&nbsp
-      <b>End time:  </b> <script>document.write(getEndTime())</script><br>
+      <b>Start time:  {{start_time}} </b> <script>document.write(getStartTime())</script>&nbsp&nbsp&nbsp
+      <b>End time:  {{end_time}} </b> <script>document.write(getEndTime())</script><br>
       <b>Description</b>: {{description}}<br></font>
     
   <script>
