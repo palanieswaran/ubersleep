@@ -9,6 +9,8 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script>
     WebFont.load({
@@ -24,17 +26,22 @@
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
-<body>
+<body class = "bground">
 
-  <h1>Add Sleep</h1>
-  <font color="blue"><b>Biphasic - One 5 hour sleep and one 1 hour, 30 minute sleep<br>
-  Everyman - One 3 hour sleep and three 30 minute sleeps<br>
-  Dymaxion - Four 30 minute sleeps<br>
-  Uberman - Six 30 minute sleeps<br></b></font>
-  <a href="http://en.wikipedia.org/wiki/Polyphasic_sleep#Claimed_sleep_patterns">To find out more about alternative sleep cycles, click here.</a>
+  <h1 class = "swag_font">Add Sleep</h1>
+
+  <div class = "text_indent">
+    <font class = "swag_font_6_bold">Biphasic</font> <font class = "swag_font_6"> - One 5 hour sleep and one 1 hour, 30 minute sleep<br></font>
+    <font class = "swag_font_6_bold">Everyman</font> <font class = "swag_font_6"> - One 3 hour sleep and three 30 minute sleeps<br></font>
+    <font class = "swag_font_6_bold">Dymaxion</font> <font class = "swag_font_6"> - Four 30 minute sleeps<br></font>
+    <font class = "swag_font_6_bold">Uberman</font> <font class = "swag_font_6"> - Six 30 minute sleeps<br></font>
+    <a href="http://en.wikipedia.org/wiki/Polyphasic_sleep#Claimed_sleep_patterns"><font class = "swag_font_6_link">To find out more about alternative sleep cycles, click here.</font></a>
+  </div>
+
+
   <form id="sleep_form" role="form">
     <div class="form-group">
-      <label for="sleep_cycle">Choose sleep cycle:</label>
+      <label for="sleep_cycle"><font class = "swag_font_6_bold">Choose sleep cycle:</font></label>
       <select class="form-control" id="sleep_cycle">
         <option value="0">Biphasic</option>
         <option value="1">Everyman</option>
@@ -46,8 +53,8 @@
       <label for="date">Date:</label>
       <input type="date" class="form-control" id="date" placeholder="">
     </div>
-    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
-  </form>
+    <br><br><center><button id="submitBtn" type="button" class="btn btn-default btn-lg"><font class = "swag_font_5">Add to Schedule</font></button></center>  
+  </form>
 
   <script>
   function goBackToSchedule(e)
@@ -55,7 +62,12 @@
     window.location = "schedule2";
   }
   </script>
-  <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
+  <center><button id="scheduleBtn" type="button" class="btn btn-default btn-lg"><font class = "swag_font_5">Back to Schedule</font></button></center>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/sleep_form.js"></script>
