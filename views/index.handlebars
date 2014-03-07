@@ -9,6 +9,8 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/ubersleep.webflow.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script>
     WebFont.load({
@@ -24,12 +26,12 @@
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
-<body>
+<body class = "bground">
   <header class="section">
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-4 subfooter-left">
-          <div class="app-name">ubersleep</div>
+          <div class="app-name"><font class = "swag_font">ubersleep</font></div>
         </div>
         <div class="w-col w-col-8 nav-column">
           <a class="w-hidden-small w-hidden-tiny w-inline-block app-store-button" href="http://apple.com">
@@ -39,7 +41,7 @@
       </div>
     </div>
   </header>
-  <div class="section hero"></div>
+  <!--<div class="section hero"></div>-->
   <div class="section white" id="page-nav-organize"></div>
   
   <!--<div class="form-group">
@@ -60,10 +62,76 @@
   }
   </script>
 
-  <a id= "startBtn" class = "button" href="schedule2"> Begin Sleep Optimization</a>
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      <center><font class = "font_swag_3">The Sleep Allocator </font></center><br></br>
+        <font class = "font_swag_5"> Track alternative sleep cycles. Simply input your schedule and then "add sleep", and Ubersleep will plan your sleep for you. There are four cycles to choose from.</font>
+        <br></br>
+        <br></br>
+        <br></br>
+
+    </div>
+
+    <div class="item">
+      <center> 
+        <font class = "swag_font"> Biphasic</font>
+        <img src="images/Biphasic.png">
+      </center>
+    </div>
+
+    <div class="item">
+      <center> 
+        <font class = "swag_font"> Everyman</font>
+        <img src="images/Everyman.png">
+      </center>
+    </div>
+
+    <div class="item">
+      <center> 
+        <font class = "swag_font"> Dymaxion</font>
+        <img src="images/Dymaxion.png">
+      </center>
+    </div>
+
+    <div class="item">
+      <center> 
+        <font class = "swag_font"> Uberman</font>
+        <img src="images/uberman.png">
+      </center>
+    </div>
+
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+<script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule2";
+  }
+  </script>
+
+<center><button id= "startBtn" class = "btn btn-default btn-lg" href="schedule2"> <font class = "swag_font_5">Proceed to Schedule</font></button></center>
+
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
 
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
