@@ -22,7 +22,16 @@ function initializePage() {
 	$('#scheduleBtn').click(goBackToSchedule);
 }
 
-
+/*function GetUrlValue(VarSearch){
+	var SearchString = window.location.search.substring(1);
+    var VariableArray = SearchString.split('&');
+    for(var i = 0; i < VariableArray.length; i++){
+        var KeyValuePair = VariableArray[i].split('=');
+        if(KeyValuePair[0] == VarSearch){
+        	return KeyValuePair[1];
+        }
+    }
+}*/
 
 function addEvent(e) {
 	  var query = window.location.search;
@@ -39,7 +48,7 @@ function addEvent(e) {
 	var startTime = document.getElementById("start_time").value;
 	var endTime = document.getElementById("end_time").value;
 	var eventName = document.getElementById("event_name").value;
-	var description = document.getElementById("description").value;
+	var description = document.getElementById("desc").value;
 	function GetUrlValue(VarSearch){
 	    var SearchString = window.location.search.substring(1);
 	    var VariableArray = SearchString.split('&');
@@ -57,7 +66,6 @@ function addEvent(e) {
 		date_str += (date_arr[i] + " ");
 	}
 	date_str += (date_arr[date_arr.length-1]);
-	console.log("datestr is: " + date_str);
 
 	var month=new Array();
 	month["Jan"]="01";
@@ -80,11 +88,11 @@ function addEvent(e) {
 		alert('Please enter a name for your event');
 		e.preventDefault();
 	}
-	else if (parseInt(startTime) >= parseInt(endTime)) {
+	if (parseInt(startTime) >= parseInt(endTime)) {
 		alert('Please enter a start time that is before the end time');
 		e.preventDefault();
 	}
-	else {
+	/*else {
 		var json = {
 			'event': eventName,
 			'date': date_to_check,
@@ -95,6 +103,6 @@ function addEvent(e) {
 		/*$.post('/event/new', json, function() {
 			console.log("result is: " + res);
 			window.location.href = schedule2; // reload the page
-		});*/
-	}
+		});
+	}*/
 }

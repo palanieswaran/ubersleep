@@ -25,24 +25,25 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body>
-  <h1><script>document.write(GetUrlValue("message"))</script> </h1><br><br>
-  <h1>Add Event</h1>
-<form id="event_form" role="form">
+    <script>document.write("<p>Add Event Error: You tried to add event " + GetUrlValue(name) + " on " + GetUrlValue(date) + " from " + GetUrlValue(start_time) + " to " + GetUrlValue(end_time) + ", causing an overlap.</p>");</script>
+  <h1>Add Event Error!</h1>
+  <h3>You added an event that overlaps. Please try again with correct times.</h3>
+<form id="event_form" role="form" method = "post" action = "/event/new">
     <div class="form-group">
       <label for="event_name">Event name:</label>
-      <input type="text" class="form-control" id="event_name" placeholder="Enter name here">
+      <input type="text" class="form-control" id="event_name" placeholder="Enter name here" name = "event_name">
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
-      <input type="text" class="form-control" id="description" placeholder="Project desicription">
+      <input type="text" class="form-control" id="desc" placeholder="Project desicription" name = "desc">
     </div>
     <div class="form-group">
       <label for="date">Date:</label>
-      <input type="date" class="form-control" id="date" placeholder="">
+      <input type="date" class="form-control" id="date" placeholder="" name = "date">
     </div>
     <div class="form-group">
       <label for="start_time">Start time:</label>
-      <select class="form-control" id="start_time">
+      <select class="form-control" id="start_time" name = "start_time">
         <option value="0">12:00 am</option>
         <option value="1">12:30 am</option>
         <option value="2">1:00 am</option>
@@ -95,7 +96,7 @@
     </div>
     <div class="form-group">
       <label for="end_time">End time:</label>
-      <select class="form-control" id="end_time">
+      <select class="form-control" id="end_time" name = "end_time">
         <option value="48">12:00 am</option>
         <option value="1">12:30 am</option>
         <option value="2">1:00 am</option>
@@ -146,7 +147,7 @@
         <option value="47">11:30 pm</option>
       </select>
     </div>
-    <br><br><button id="submitBtn" type="button" class="button">Add to Schedule</button>
+    <br><br><input id="submitBtn" type="submit" class="button" value="Add to Schedule">
   </form>
 
   <script>
@@ -158,7 +159,7 @@
   
   <button id="scheduleBtn" type="button" class="button">Back to Schedule</button>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/event_form.js"></script>
+  <script src="js/add_event_error_frontend.js"></script>
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->
 </body>
 </html>

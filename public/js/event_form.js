@@ -18,7 +18,7 @@ function initializePage() {
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
 	//$("#submitBtn").click(addEvent); 
-	//$('#submitBtn').click(addEvent); 
+	$('#submitBtn').click(addEvent); 
 	$('#scheduleBtn').click(goBackToSchedule);
 }
 
@@ -48,8 +48,9 @@ function addEvent(e) {
 	var startTime = document.getElementById("start_time").value;
 	var endTime = document.getElementById("end_time").value;
 	var eventName = document.getElementById("event_name").value;
-	var description = document.getElementById("description").value;
+	var description = document.getElementById("desc").value;
 	var date = document.getElementById("date").value;
+	console.log("here is the date in event_form: " + date);
 /*    var databaseURL = "mongodb://127.0.0.1:27017/test";	
 	var collection = ["schedule"];
 	var database = require("mongoose").connect(databaseURL, collection);
@@ -59,11 +60,15 @@ function addEvent(e) {
 		alert('Please enter a name for your event');
 		e.preventDefault();
 	}
-	else if (parseInt(startTime) >= parseInt(endTime)) {
+	if (parseInt(startTime) >= parseInt(endTime)) {
 		alert('Please enter a start time that is before the end time');
 		e.preventDefault();
 	}
-	else {
+	if (date === "") {
+		alert('Please enter a date in the date field.');
+		e.preventDefault();
+	}
+	/*else {
 		var json = {
 			'event': eventName,
 			'date': date,
@@ -75,5 +80,5 @@ function addEvent(e) {
 			window.location.href = 'schedule2'; // reload the page
 		});
 
-	}
+	}*/
 }

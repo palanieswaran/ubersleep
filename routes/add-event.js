@@ -8,21 +8,20 @@ exports.view2 = function(req, res) { 
   res.render('add-event2');
 }
 
-exports.viewError = function(req, res) {
-  var message = req.params.message;
+exports.viewError = function(req, res) { 
   res.render('add-event-error');
 }
 
 exports.add = function(req, res) {
   console.log("req: " + req);
   console.log("res: " + res);
-  var event_name = req.params.event_name;
-  console.log("params: " + req.params.length);
-  var description = req.params.desc;
-  var date = req.params.date;
+  var event_name = req.body.event_name;
+  console.log("params: " + req.body.length);
+  var description = req.body.desc;
+  var date = req.body.date;
   console.log("date: " + date);
-  var start_time = req.params.start_time;
-  var end_time = req.params.end_time;
+  var start_time = req.body.start_time;
+  var end_time = req.body.end_time;
   var date_to_check = date.substring(0);
 
   console.log("entered add-event.add");
@@ -76,8 +75,8 @@ exports.add = function(req, res) {
         console.log("These are the events that are overlapaping: ")
         console.log(events[i]);
       }
-      var message = 'message';
-      res.redirect('add-event-error/' + message);
+      var message = 'this is an error message';
+      res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time);
     } else {
       console.log("entered else");
       var newEvent = new models.Event({
