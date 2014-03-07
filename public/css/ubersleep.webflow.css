@@ -657,6 +657,37 @@ p {
   letter-spacing: 0.2em;
   } 
 
+  .swag_font_error { /*error message font */
+  font-family: "Lucida Grande", Tahoma;
+  font-size: 12px;
+  font-weight: bold;
+  font-variant: normal;
+  text-transform: uppercase;
+  color: #FF0000;
+  margin-top: 5px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  } 
+
+  .swag_font_modal { /*error message font */
+  font-family: "Lucida Grande", Tahoma;
+  font-size: 18px;
+  font-weight: bold;
+  font-variant: normal;
+  text-transform: uppercase;
+  color: #666666;
+  margin-top: 5px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  } 
+
+  .date_border {
+  border-bottom-color: #F0F5F5;
+  border-bottom: groove;
+
+
+  }
+
   .date_align {
     margin-left: 25px;
   }

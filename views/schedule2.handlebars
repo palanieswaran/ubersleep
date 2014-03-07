@@ -158,8 +158,13 @@ function reloadSchedule()
       }
 
     </script>
-    <h2><center><div class = "swag_font_2" >{{modifiedDate}}</div></center></h2>{{#if links}}<h5><center><button type="button" class="btn btn-default btn-xs"><a id= "add_ev"  href="add-event2?date={{date}}"> <font class = "swag_font_4">Add Event Today</font></a></button>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-default btn-xs"><a id= "add_sl"  href="add-sleep2?date={{date}}"><font class = "swag_font_4">Add Sleep Today</font> </a></button></center></h5>{{/if}}
+<div class = "date_border">
+    <h2><center><div class = "swag_font_2" >{{modifiedDate}}</div></center></h2>{{#if links}}<h5><center><button type="button" class="btn btn-default btn-xs"><a id= "add_ev"  href="add-event2?date={{date}}"> <font class = "swag_font_4">Add Event</font></a></button>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-default btn-xs"><a id= "add_sl"  href="add-sleep2?date={{date}}"><font class = "swag_font_4">Add Sleep</font> </a></button></center></h5>{{/if}}
 
+</div>
+
+<br> 
+</br>
     <!--<script>
     document.write(getFillerHours());
     </script>-->
