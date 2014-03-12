@@ -18,7 +18,6 @@ function initializePage() {
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
 	$("#submitBtn").click(addEvent); 
-	$('#scheduleBtn').click(goBackToSchedule);
 }
 
 function addEvent(e) {
@@ -34,15 +33,17 @@ function addEvent(e) {
 	    }
 	}
 	var date = GetUrlValue("date");
-	var date_arr = GetUrlValue("date").split('%20');
+	var user = GetUrlValue("user");
+	/*var date_arr = GetUrlValue("date").split('%20');
 	var date_str = "";
 	for (var i = 0; i < date_arr.length - 1; i++) {
 		date_str += (date_arr[i] + " ");
 	}
-	date_str += (date_arr[date_arr.length-1]);
+	date_str += (date_arr[date_arr.length-1]);*/
 	var json = {
 		'sleep_option': sleepCycle,
-		'date': date_str
+		'date': date,
+		'user': user
 	};
 	$.post('/sleep/new', json, function() {
 		window.location.href = 'schedule2';

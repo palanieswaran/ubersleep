@@ -14,8 +14,18 @@ exports.addsleep = function(req, res) {
 	var form_data = req.body;
 	var sleep_option = form_data["sleep_option"];
 	console.log("Finding events on: " + form_data["date"]);
+
+	var user = form_data["user"];
+
+	var user_arr = user.split('%20');
+	var user_str = "";
+	for (var i = 0; i < user_arr.length - 1; i++) {
+	    user_str += (user_arr[i] + " ");
+    }
+    user_str += (user_arr[user_arr.length-1]);
+
 	models.Event
-		.find({"date": form_data["date"]})
+		.find({ $and: [ {"date": form_data["date"]}, {"user": user_str}]})
 		.sort('start_time')
 		.exec(renderEvent);
 
@@ -248,7 +258,8 @@ exports.addsleep = function(req, res) {
 							    "date": form_data["date"],
 							    "description": "Sleep cycle!",
 							    "start_time": j,
-							    "end_time": curr_end
+							    "end_time": curr_end,
+								"user": user_str
 						    });
 
 						  newEvent.save(afterSaving);

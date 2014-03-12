@@ -13,8 +13,6 @@
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="/path/to/walltime-data.js"></script>
-  <script src="/path/to/walltime.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -43,58 +41,12 @@
     data[i] = decodeURI(data[i]);
   }
 </script>
-<h1 class = "swag_font">Schedule
-<script>
-document.write(data[0] + "\n")
-</script></h1>
-<script>
-function reloadSchedule()
-{
-  var dateToSend = encodeURI(document.getElementById("date").value);
-  var json = {
-     'date': document.getElementById("date").value
-  };
-  $.post('/schedule/render', json, function() {
-    window.location.href = 'schedule?' + dateToSend; // reload the page
-   });
+<h1 class = "swag_font">Schedule</h1>
+  <header class="section"><form id="event_form" role="form" method = "post" action = "/schedule2"><div class="form-group"><label for="event_name">Select Date to Dipslay Events: </label><input type="date" class="form-control" id="date" placeholder="Enter name here" name="date" onchange="this.form.submit()"></div></form></header>
 
-}
-</script>
-<!--<a id= "reloadSchedBtn" class = "new-button-class" href="javascript:reloadSchedule();"> Change Date</a>-->
-  <header class="section">
-  <script>
-  function sendAddEventData()
-  {
-    window.location = "add-event?" + data[0];
-  }
-  </script>
-  <script>
-  function sendAddSleepData()
-  {
-    window.location = "add-sleep?" + data[0];
-  }
-  </script>
-  <center><a id= "addEventBtn" class = "btn btn-success btn-lg" href="javascript:sendAddEventData();"> <font class = "swag_font_3">Add Event</font></a>&nbsp&nbsp&nbsp&nbsp<a id= "addSleepBtn" class = "btn btn-primary btn-lg" href="javascript:sendAddSleepData()"><font class = "swag_font_3"> Add Sleep </font></a></center>
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-4 subfooter-left">
-          <!--<div class="app-name">Today's
-            <br>
-            <br>Schedule</div>
-        </div>-->
-        <div class="w-col w-col-8 nav-column">
-          <a class="w-hidden-small w-hidden-tiny w-inline-block app-store-button" href="http://apple.com">
-            <img src="images/appstore.png" width="114px" alt="52af8cf8aae9d4d567000057_appstore.png">
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!--<div class="section white" id="page-nav-organize"></div>
-  <div class="section subfooter white"></div>-->
-
-
-  
+  <h2><center><div class = "swag_font_2" >{{date_str}}<!--</div>--></center></h2></div>
+    <center><a id= "addEventBtn" class = "btn btn-default btn-xs" href="add-event2?date={{date}}&user={{user}}"> <font class = "swag_font_4">Add Event</font></a>&nbsp&nbsp&nbsp&nbsp<a id= "addSleepBtn" class = "btn btn-default btn-xs" href="add-sleep2?date={{date}}&user={{user}}"><font 
+  class = "swag_font_4"> Add Sleep </font></a></center>
   {{#each events}}
     <script>
       function getStartTime() {
@@ -168,12 +120,7 @@ function reloadSchedule()
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
-
     </script>
-    {{#if links}}<br><br><br><div class = "date_border"><h2><center><div class = "swag_font_2" >{{modifiedDate}}</div></center></h2><h5><center><button type="button" class="btn btn-default btn-xs"><a id= "add_ev"  href="add-event2?date={{date}}"> <font class = "swag_font_4">Add Event</font></a></button>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-default btn-xs"><a id= "add_sl"  href="add-sleep2?date={{date}}"><font class = "swag_font_4">Add Sleep</font> </a></button></center></h5></div>{{/if}}
-
-
-<br>
     <!--<script>
     document.write(getFillerHours());
     </script>-->
@@ -187,8 +134,8 @@ function reloadSchedule()
       <b>Description</b>: {{description}}<br></font>
     
   <script>
-    document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}\"> Delete Event</a>");
-    document.write("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a id= \"edit{{event}}\"  href=\"edit?id={{_id}}&event={{event}}&date={{date}}&start_time={{start_time}}&end_time={{end_time}}&desc={{description}}\"> Edit Event</a>");
+    document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}&date={{date}}&user={{user}}\"> Delete Event</a>");
+    document.write("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a id= \"edit{{event}}\"  href=\"edit?id={{_id}}&event={{event}}&date={{date}}&start_time={{start_time}}&end_time={{end_time}}&desc={{description}}&user={{user}}\"> Edit Event</a>");
   </script>
 </div>
 </div>

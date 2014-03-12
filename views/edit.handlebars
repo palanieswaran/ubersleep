@@ -298,24 +298,23 @@
 
       var id = GetUrlValue("id");
 
+      var user = GetUrlValue("user");
+
       console.log(event_name2);
 
       document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");
       document.write("<input type=\"hidden\" id=\"event_name\" name=\"event_name\" value=" + event_name2 + ">");
       document.write("<input type=\"hidden\" id=\"desc\" name=\"desc\" value=" + desc2 + ">");
       document.write("<input type=\"hidden\" id=\"_id\" name=\"_id\" value=" + id + ">");
+      document.write("<input type=\"hidden\" id=\"user\" name=\"user\" value=" + user + ">");
       </script>
-    <br><br><center><button id="submitBtn" type="submit" class="btn btn-default btn-lg"><font class = "swag_font_5">Edit Event</button></center>
+    <br><br><center><button id="submitBtn" type="submit" class="btn btn-default btn-lg">Edit Event</button></center>
   </form>
 
-  <script>
-  function goBackToSchedule(e)
-  {
-    window.location = "schedule2";
-  }
-  </script>
-  
-  <center><button id="scheduleBtn" type="button" class="btn btn-default btn-lg"><font class = "swag_font_5">Back to Schedule</font></button></center>
+    <form id="back_form" role="form" method = "post" action = "/schedule2">
+  <script>document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");
+      </script><center><input id="backBtn" type="submit" class="btn btn-default btn-lg" value = "Back to Schedule"></center>
+  </form>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

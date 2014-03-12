@@ -48,6 +48,7 @@ console.log("now entering deleteEvent");
 	    }
 	}
 var id = GetUrlValue("id");
+var user = GetUrlValue("user");
 console.log("id value in delete_form is: " + id);
 //var date_arr = GetUrlValue("date").split('%');
 //var date_str = "";
@@ -59,7 +60,7 @@ console.log("id value in delete_form is: " + id);
 //console.log("the date is:" + date_str);
 //console.log("the event is:" + GetUrlValue("event"));
 //var event_name = GetUrlValue("event");
-  $.post('/delete/'+id+'/deleteEvent', function() {
+  $.post('/delete/'+id+'/'+user'/deleteEvent', function() {
 window.location.href = 'schedule2';
 });
 }

@@ -1,67 +1,41 @@
 var models = require('../models');
-
-
-exports.view = function(req, res) { 
-
-  var form_data = req.body;
-  console.log("backend" + form_data);
-	models.Event
-		.find()
-		.sort('date')
-		.sort('start_time')
-		.exec(renderEvent);
-
-	function renderEvent(err, events) {
-		var currDate = "";
-		for (var i = 0; i < events.length; i++) {
-			var date = events[i]["date"];
-			var month=new Array();
-			month[0]="January";
-			month[1]="February";
-			month[2]="March";
-			month[3]="April";
-			month[4]="May";
-			month[5]="June";
-			month[6]="July";
-			month[7]="August";
-			month[8]="September";
-			month[9]="October";
-			month[10]="November";
-			month[11]="December";
-			var fullMonth = month[date.getMonth()];
-
-			var weekday=new Array(7);
-			weekday[0]="Sunday";
-			weekday[1]="Monday";
-			weekday[2]="Tuesday";
-			weekday[3]="Wednesday";
-			weekday[4]="Thursday";
-			weekday[5]="Friday";
-			weekday[6]="Saturday";
-			var fullDay = weekday[date.getDay()];
-
-			var newDateString = fullDay + " " + fullMonth + " " + date.getDate() + ", " + date.getFullYear();
-			console.log(newDateString);
-
-			if (newDateString === currDate) {
-				events[i]["modifiedDate"] = "";
-				events[i]["links"] = false;
-			} else {
-				currDate = newDateString;
-				events[i]["modifiedDate"] = newDateString;
-				events[i]["links"] = true;
-			}
-		}
-		res.render('schedule', {'events': events});
-	}
-}
+var express = require('express');
+var app = express();
 
 exports.view2 = function(req, res) { 
-  var form_data = req.body;
-  console.log("backend view2" + form_data);
-	models.Event
-		.find()
-		.sort('date')
+  var date2 = req.body.date;
+  var user = req.body.user_name;
+  console.log("username in schedule.js: " + user);
+  /*if (user != '') {
+  	app.locals({
+  		user: user
+  	});
+  }
+  console.log("app locals user is: " + app.locals.user);*/
+  if (typeof date2 == 'undefined' || date2 == '') {
+  	console.log("in null");
+  	date2 = new Date().toString();
+      var month=new Array();
+      month["Jan"]="01";
+      month["Feb"]="02";
+      month["Mar"]="03";
+      month["Apr"]="04";
+      month["May"]="05";
+      month["Jun"]="06";
+      month["Jul"]="07";
+      month["Aug"]="08";
+      month["Sep"]="09";
+      month["Oct"]="10";
+      month["Nov"]="11";
+      month["Dec"]="12";
+      var monthNum = month[date2.substring(4,7)];
+
+      var date_to_check = date2.substring(11,15) + "-" + monthNum + "-" + date2.substring(8,10);
+      date2 = date_to_check;
+      console.log("date2 after processing: " + date2);
+  }
+  models.Event
+		.find({ $and: [ {"date": date2}, {"user": user}]})
 		.sort('start_time')
 		.exec(renderEvent);
 
@@ -125,9 +99,39 @@ exports.view2 = function(req, res) { 
 
 			events[i]["prev_end_time"] = prev_end_time;
 			prev_end_time = events[i]["end_time"];
+			events[i]["user"] = user;
 
 		}
-		res.render('schedule2', {'events': events});
+		if (events.length == 0) {
+			var date3 = new Date(parseInt(date2.substring(0,4)), parseInt(date2.substring(5,7)) - 1, parseInt(date2.substring(8)));
+			var month=new Array();
+			month[0]="January";
+			month[1]="February";
+			month[2]="March";
+			month[3]="April";
+			month[4]="May";
+			month[5]="June";
+			month[6]="July";
+			month[7]="August";
+			month[8]="September";
+			month[9]="October";
+			month[10]="November";
+			month[11]="December";
+			var fullMonth = month[date3.getMonth()];
+
+			var weekday=new Array(7);
+			weekday[0]="Sunday";
+			weekday[1]="Monday";
+			weekday[2]="Tuesday";
+			weekday[3]="Wednesday";
+			weekday[4]="Thursday";
+			weekday[5]="Friday";
+			weekday[6]="Saturday";
+			var fullDay = weekday[date3.getDay()];
+
+			var newDateString = fullDay + " " + fullMonth + " " + date3.getDate() + ", " + date3.getFullYear();
+		}
+		res.render('schedule2', {'events': events, 'date': date2, 'date_str': newDateString, 'user': user});
 	}
 }
 

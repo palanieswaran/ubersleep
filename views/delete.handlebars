@@ -49,9 +49,35 @@
   <h1 class = "swag_font">Delete Event</h1>
   <font class = "swag_font_2"><p><script>document.write("Event Name: " + getEvent())</script> </p</font>
    
-<center><button id="deleteBtn" type="button" class="btn btn-danger btn-lg"><font class = "swag_font_5_white">Delete</font></button></center>
+<center><button id="deleteBtn" type="button" class="btn btn-danger btn-lg">Delete</button></center>
 
-    <center><a href="schedule2"><button class="btn btn-default btn-lg"><font class = "swag_font_5">Back to Schedule</font></button></a></center>
+   <form id="back_form" role="form" method = "post" action = "/schedule2">
+  <script>
+  var date = GetUrlValue("date");
+  var date_arr = GetUrlValue("date").split('%20');
+  var date_str = "";
+  for (var i = 0; i < date_arr.length - 1; i++) {
+    date_str += (date_arr[i] + " ");
+  }
+  date_str += (date_arr[date_arr.length-1]);
+  var month=new Array();
+      month["Jan"]="01";
+      month["Feb"]="02";
+      month["Mar"]="03";
+      month["Apr"]="04";
+      month["May"]="05";
+      month["Jun"]="06";
+      month["Jul"]="07";
+      month["Aug"]="08";
+      month["Sep"]="09";
+      month["Oct"]="10";
+      month["Nov"]="11";
+      month["Dec"]="12";
+      var monthNum = month[date_str.substring(4,7)];
+
+      var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);
+  document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date_to_check + ">");
+      </script><center><input id="backBtn" type="submit" class="btn btn-default btn-lg" value = "Back to Schedule"></center>
   </form>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -1,5 +1,8 @@
 var models = require('../models');
 
+var express = require('express');
+var app = express();
+
 exports.view = function(req, res) { 
 	res.render('add-event');
 }
@@ -23,6 +26,16 @@ exports.add = function(req, res) {
   var start_time = req.body.start_time;
   var end_time = req.body.end_time;
   var date_to_check = date.substring(0);
+  var user = req.body.user;
+  console.log("user is: " + user);
+
+  var user_arr = user.split('%20');
+  var user_str = "";
+  for (var i = 0; i < user_arr.length - 1; i++) {
+    user_str += (user_arr[i] + " ");
+  }
+  user_str += (user_arr[user_arr.length-1]);
+  console.log("user string in add-event.js: " + user_str);
 
   console.log("entered add-event.add");
 
@@ -76,7 +89,7 @@ exports.add = function(req, res) {
         console.log(events[i]);
       }
       var message = 'this is an error message';
-      res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time);
+      res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time + "?user"= + user_str);
     } else {
       console.log("entered else");
       var newEvent = new models.Event({
@@ -86,7 +99,8 @@ exports.add = function(req, res) {
       "start_time": start_time,
       "end_time": end_time,
       //why is this field always undefined???? maybe we need to tell the JSON to expect it.
-      "date_to_check": date_to_check
+      "date_to_check": date_to_check,
+      "User": user_str
       });
 
       newEvent.save(afterSaving);
@@ -94,6 +108,8 @@ exports.add = function(req, res) {
       function afterSaving(err) {
         console.log("addEvent");
         if (err) {console.log(err); res.send(500); }
+        //var date = req.body.date;
+        //we want to pass date as post request
         res.redirect('schedule2');
       }
     }

@@ -67,6 +67,8 @@
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
   </ol>
   <!-- Carousel items -->
   <div class="carousel-inner">
@@ -120,7 +122,13 @@
   }
   </script>
 
-<center><button id= "startBtn" class = "btn btn-default btn-lg" href="schedule2"> <font class = "swag_font_5">Proceed to Schedule</font></button></center>
+<form id="event_form" role="form" method = "post" action = "/schedule2">
+    <div class="form-group">
+      <input type="text" class="form-control" id="user_name" placeholder="Enter Name Here!" name="user_name">
+      <br>
+      <center><input id="submitBtn" type="submit" class="btn btn-default btn-lg" value = "Login"></center>
+</form>
+    </div>
 
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -131,7 +139,6 @@
 
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>

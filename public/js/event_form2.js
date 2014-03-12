@@ -19,7 +19,6 @@ function initializePage() {
 	// example: $("#div-id").click(functionToCall);
 	//$("#submitBtn").click(addEvent); 
 	$('#submitBtn').click(addEvent); 
-	$('#scheduleBtn').click(goBackToSchedule);
 }
 
 /*function GetUrlValue(VarSearch){

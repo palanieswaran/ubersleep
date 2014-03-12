@@ -52,7 +52,7 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
-app.get('/schedule', schedule.view);
+//app.get('/schedule', schedule.view);
 app.get('/add-event', add_event.view);
 app.get('/add-sleep', add_sleep.view);
 app.get('/delete', delete_js.view);
@@ -65,9 +65,9 @@ app.get('/edit', edit.view);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
 app.post('/sleep/new', add_sleep.addsleep);
-app.post('/delete/:id/deleteEvent', delete_js.deleteEvent);
+app.post('/delete/:id/:user/deleteEvent', delete_js.deleteEvent);
 app.post('/edit/new', edit.edit);
-
+app.post('/schedule2', schedule.view2);
 
 //app.get('/project/:id', project.projectInfo);
 //app.get('/palette', palette.randomPalette);

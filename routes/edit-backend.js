@@ -33,6 +33,15 @@ exports.edit = function(req, res) {
   var end_time = req.body.end_time;
   var date_to_check = date.substring(0);
 
+  var user = req.body.user;
+
+  var user_arr = user.split('%20');
+  var user_str = "";
+  for (var i = 0; i < user_arr.length - 1; i++) {
+    user_str += (user_arr[i] + " ");
+  }
+  user_str += (user_arr[user_arr.length-1]);
+
   console.log("event to be added start time: " + start_time);
   console.log("event to be added end time: " + end_time);
 
@@ -75,7 +84,8 @@ exports.edit = function(req, res) {
         "start_time": start_time,
         "end_time": end_time,
         //why is this field always undefined???? maybe we need to tell the JSON to expect it.
-        "date_to_check": date_to_check
+        "date_to_check": date_to_check,
+        "User": user_str
         });
 
         newEvent.save(afterSaving);
