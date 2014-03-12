@@ -22,6 +22,7 @@ function initializePage() {
 
 function addEvent(e) {
 	var sleepCycle = document.getElementById("sleep_cycle").value;
+	var next_X_days = document.getElementById("next_X_days").value;
 		function GetUrlValue(VarSearch){
 	    var SearchString = window.location.search.substring(1);
 	    var VariableArray = SearchString.split('&');
@@ -43,7 +44,8 @@ function addEvent(e) {
 	var json = {
 		'sleep_option': sleepCycle,
 		'date': date,
-		'user': user
+		'user': user,
+		'next_X_days': next_X_days
 	};
 	$.post('/sleep/new', json, function() {
 		window.location.href = 'schedule2';

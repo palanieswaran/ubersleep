@@ -30,15 +30,32 @@
 
 
 
-<div class="modal fade" id = "modalBiphasic">
+<div class="modal fade" id = "modalMonophasic">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="swag_font_modal">Biphasic</h4>
+            <h4 class="swag_font_modal">Monophasic</h4>
           </div>
           <div class="modal-body">
-            <center><img src = "images/Biphasic.png" class ="img" ></center>
+            <center><img src = "images/monophasic.png" class ="img" ></center>
+          </div>
+          <div class="modal-footer">
+           
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<div class="modal fade" id = "modalSiesta">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="swag_font_modal">Siesta</h4>
+          </div>
+          <div class="modal-body">
+            <center><img src = "images/siesta.png" class ="img" ></center>
           </div>
           <div class="modal-footer">
            
@@ -55,7 +72,24 @@
             <h4 class="swag_font_modal">Everyman</h4>
           </div>
           <div class="modal-body">
-            <center><img src = "images/Everyman.png" class ="img" ></center>
+            <center><img src = "images/everyman.png" class ="img" ></center>
+          </div>
+          <div class="modal-footer">
+            
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id = "modalDualCore">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="swag_font_modal">Dual Core</h4>
+          </div>
+          <div class="modal-body">
+            <center><img src = "images/dual_core.png" class ="img" ></center>
           </div>
           <div class="modal-footer">
             
@@ -72,7 +106,7 @@
             <h4 class="swag_font_modal">Dymaxion</h4>
           </div>
           <div class="modal-body">
-            <center><img src = "images/Dymaxion.png" class ="img" ></center>
+            <center><img src = "images/dymaxion.png" class ="img" ></center>
           </div>
           <div class="modal-footer">
             
@@ -89,7 +123,7 @@
             <h4 class="swag_font_modal">Uberman</h4>
           </div>
           <div class="modal-body">
-            <center><img src = "images/Uberman.png" class ="img" ></center>
+            <center><img src = "images/uberman.png" class ="img" ></center>
           </div>
           <div class="modal-footer">
             
@@ -102,8 +136,10 @@
   <h1 class = "swag_font">Add Sleep</h1>
 
   <div class = "text_indent">
-    <button data-toggle="modal" data-target="#modalBiphasic"><font class = "swag_font_6_bold">Biphasic</font> </button><font class = "swag_font_6"> - One 5 hour sleep and one 1 hour, 30 minute sleep<br></font>
+    <button data-toggle="modal" data-target="#modalMonophasic"><font class = "swag_font_6_bold">Monophasic</font> </button><font class = "swag_font_6"> - One 7 hour sleep<br></font>
+    <button data-toggle="modal" data-target="#modalSiesta"><font class = "swag_font_6_bold">Siesta</font> </button><font class = "swag_font_6"> - One 5 hour sleep and one 1 hour, 30 minute sleep<br></font>
     <button data-toggle="modal" data-target="#modalEveryman"><font class = "swag_font_6_bold">Everyman</font> </button> <font class = "swag_font_6"> - One 3 hour sleep and three 30 minute sleeps<br></font>
+    <button data-toggle="modal" data-target="#modalDualCore"><font class = "swag_font_6_bold">Dual Core</font> </button> <font class = "swag_font_6"> - One 3 hour, 30 minute sleep, one 1 hour, 30 minute sleep, and one 30 minute sleep<br></font>
     <button data-toggle="modal" data-target="#modalDymaxion"><font class = "swag_font_6_bold">Dymaxion</font> </button><font class = "swag_font_6"> - Four 30 minute sleeps<br></font>
     <button data-toggle="modal" data-target="#modalUberman"><font class = "swag_font_6_bold">Uberman</font> </button><font class = "swag_font_6"> - Six 30 minute sleeps<br></font>
 
@@ -116,12 +152,51 @@
     <div class="form-group">
       <label for="sleep_cycle"><font class = "swag_font_6_bold">Choose sleep cycle:</font></label>
       <select class="form-control" id="sleep_cycle">
-        <option value="0">Biphasic</option>
+        <option value="0">Siesta</option>
         <option value="1">Everyman</option>
         <option value="2">Dymaxion</option>
         <option value="3">Uberman</option>
+        <option value="4">Dual Core</option>
+        <option value="5">Monophasic</option>
       </select>
     </div>
+    
+    <div class="form-group">
+      <label for="sleep_cycle"><font class = "swag_font_6_bold">How many days would you like to try this cycle?</font></label>
+      <select class="form-control" id="next_X_days">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+      </select>
+    </div>
+
     <br><br><center><button id="submitBtn" type="button" class="btn btn-default btn-lg">Add to Schedule</button><center>
   </form>
 
@@ -161,7 +236,9 @@
 
       var date_to_check = date_str.substring(11,15) + "-" + monthNum + "-" + date_str.substring(8,10);*/
   document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + date + ">");
-      </script><center><input id="backBtn" type="submit" class="btn btn-default btn-lg" value = "Back to Schedule"></center>
+      </script>
+
+      <center><input id="backBtn" type="submit" class="btn btn-default btn-lg" value = "Back to Schedule"></center>
   </form>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
