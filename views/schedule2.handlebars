@@ -39,7 +39,7 @@
   }
 </script>
 <h1 class = "swag_font">Schedule</h1>
-  <header class="section"><form id="event_form" role="form" method = "post" action = "/schedule2"><div class="form-group"><label for="event_name">Select Date to Dipslay Events: </label><input type="date" class="form-control" id="date" placeholder="Enter name here" name="date" onblur="this.form.submit()"></div></form></header>
+  <header class="section"><form id="event_form" role="form" method = "post" action = "/schedule2"><div class="form-group"><center><label for="event_name">Select Date to Dipslay Events: </label><input type="date" class="form-control" id="date" name="date" onblur="this.form.submit()"></center></div></form></header>
 
   <h2><center><div class = "swag_font_2" >{{date_str}}<!--</div>--></center></h2></div>
     <center><a id= "addEventBtn" class = "btn btn-default btn-xs" href="add-event2?date={{date}}&user={{user}}"> <font class = "swag_font_4">Add Event</font></a>&nbsp&nbsp&nbsp&nbsp<a id= "addSleepBtn" class = "btn btn-default btn-xs" href="add-sleep2?date={{date}}&user={{user}}"><font 
