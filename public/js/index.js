@@ -17,6 +17,12 @@ function initializePage() {
 
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
+	$("#myCarousel").swiperight(function() {  
+          $('.carousel').carousel('prev');  
+    });  
+    $("#myCarousel").swipeleft(function() {  
+          $('.carousel').carousel('next');  
+    });  
 	$('#submitBtn').click(goBackToSchedule);
 }
 

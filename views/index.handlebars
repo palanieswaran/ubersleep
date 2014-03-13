@@ -45,14 +45,14 @@
   <div class="section white" id="page-nav-organize"></div>
   
   <!--<div class="form-group">
-   <label for="date">Date:</label>
-   <input type="date" class="form-control" id="date" placeholder="">
-  </div>-->
+   <label for="date">Date:</label>
+   <input type="date" class="form-control" id="date" placeholder="">
+  </div>-->
 
-  <script>
+  <script>
   function sendData()
-  {
-    var encodedDate = encodeURI(document.getElementById("date").value);
+  {
+    var encodedDate = encodeURI(document.getElementById("date").value);
     var json = {
       'date': document.getElementById("date").value
     };
@@ -60,23 +60,14 @@
       window.location.href = 'schedule?' + encodedDate; // reload the page
     });
   }
-  </script>
+  </script>
 
-<div id="myCarousel" class="carousel slide">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-    <li data-target="#myCarousel" data-slide-to="4"></li>
-    <li data-target="#myCarousel" data-slide-to="5"></li>
-    <li data-target="#myCarousel" data-slide-to="6"></li>
-  </ol>
+<div id="myCarousel" class="carousel">
   <!-- Carousel items -->
   <div class="carousel-inner">
     <div class="active item">
-      <center><font class = "font_swag_3">The Sleep Allocator </font></center><br></br>
-        <font class = "font_swag_5"> Track alternative sleep cycles. Simply input your schedule and then "add sleep", and Ubersleep will plan your sleep for you. There are four cycles to choose from.</font>
+      <center><font class = "font_swag_3">The Sleep Allocator! </font></center><br></br>
+        <font class = "font_swag_5"> Track alternative sleep cycles. Simply input your schedule and then "add sleep", and Ubersleep will plan your sleep for you. There are six cycles to choose from.</font>
         <br></br>
         <br></br>
         <br></br>
@@ -132,34 +123,41 @@
 </div>
 
 <script>
-  function goBackToSchedule(e)
-  {
-    window.location = "schedule2";
-  }
-  </script>
+  function goBackToSchedule(e)
+  {
+    window.location = "schedule2";
+  }
+  </script>
 
 <form id="event_form" role="form" method = "post" action = "/schedule2">
-    <div class="form-group">
-      <input type="text" class="form-control" id="user_name" placeholder="Enter Name Here!" name="user_name">
+    <div class="form-group">
+      <input type="text" class="form-control" id="user_name" placeholder="Enter Name Here!" name="user_name">
       <br>
       <center><input id="submitBtn" type="submit" class="btn btn-default btn-lg" value = "Login"></center>
 </form>
-    </div>
-
-<script>
-  
-
-</script>
+    </div>
 
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 
 
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/jquery.mobile.custom.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/index.js"></script>
+  <!--<script src="js/jquery.mobile.custom.min.js"></script>-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48940736-1', 'ubersleep.herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

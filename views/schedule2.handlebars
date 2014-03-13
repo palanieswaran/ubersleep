@@ -23,23 +23,20 @@
   <script>
     if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';
   </script>
-  <link rel="shortcut icon" type="image/x-icon" href="https://y7v4p6k4.ssl.hwcdn.net/placeholder/favicon.ico">
-  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body class = "bground">
 
   <script>
-  var query = window.location.search;
-  // Skip the leading ?, which should always be there, 
-  // but be careful anyway
-  if (query.substring(0, 1) == '?') {
-    query = query.substring(1);
-  }
-  var data = query.split(','); 
-  for (i = 0; (i < data.length); i++) {
-    data[i] = decodeURI(data[i]);
-  }
+  var query = window.location.search;
+  // Skip the leading ?, which should always be there, 
+  // but be careful anyway
+  if (query.substring(0, 1) == '?') {
+    query = query.substring(1);
+  }
+  var data = query.split(','); 
+  for (i = 0; (i < data.length); i++) {
+    data[i] = decodeURI(data[i]);
+  }
 </script>
 <h1 class = "swag_font">Schedule</h1>
   <header class="section"><form id="event_form" role="form" method = "post" action = "/schedule2"><div class="form-group"><label for="event_name">Select Date to Dipslay Events: </label><input type="date" class="form-control" id="date" placeholder="Enter name here" name="date" onchange="this.form.submit()"></div></form></header>
@@ -48,35 +45,35 @@
     <center><a id= "addEventBtn" class = "btn btn-default btn-xs" href="add-event2?date={{date}}&user={{user}}"> <font class = "swag_font_4">Add Event</font></a>&nbsp&nbsp&nbsp&nbsp<a id= "addSleepBtn" class = "btn btn-default btn-xs" href="add-sleep2?date={{date}}&user={{user}}"><font 
   class = "swag_font_4"> Add Sleep </font></a></center>
   {{#each events}}
-    <script>
-      function getStartTime() {
+    <script>
+      function getStartTime() {
         //html here could return for (i = {{prev_end_time}}, < {{start_time}})), "i: <br>"
-        var minutesFromMidnight = 30 * {{start_time}};
-        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
-        var minutes = ":00";
-        var amOrPm = "AM";
-        if (minutesFromMidnight % 60 == 30) {
-          minutes = ":30";
-        }
-        if (hoursFromMidnight == 0) {
-          hoursFromMidnight = 12;
-          var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
-        }
+        var minutesFromMidnight = 30 * {{start_time}};
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
 
         if (hoursFromMidnight > 11) {
           if (hoursFromMidnight > 12) {
-            hoursFromMidnight = hoursFromMidnight - 12;
-            amOrPM = "PM";
-          }
-          amOrPm = "PM";
+            hoursFromMidnight = hoursFromMidnight - 12;
+            amOrPM = "PM";
+          }
+          amOrPm = "PM";
           var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
+          return returnValue;
         }
   
-        var returnValue = hoursFromMidnight + minutes + amOrPm;
-        return returnValue;
-      }
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
 
       function getFillerHours() {
         var prev_end_time = {{prev_end_time}};
@@ -88,43 +85,44 @@
         return ret;
       }
 
-      function getEndTime() {
-        if ({{end_time}} == 48) {
-          return "12:00AM"
-        }
-        var minutesFromMidnight = 30 * {{end_time}};
-        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
-        var minutes = ":00";
-        var amOrPm = "AM";
-        if (minutesFromMidnight % 60 == 30) {
-          minutes = ":30";
-        }
-        if (hoursFromMidnight == 0) {
-          hoursFromMidnight = 12;
-          var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
-        }
-        if (hoursFromMidnight > 12) {
-          hoursFromMidnight = hoursFromMidnight - 12;
-          amOrPm = "PM";
-          var returnValue = hoursFromMidnight + minutes + amOrPm;
-          return returnValue;
-        }
+      function getEndTime() {
+        if ({{end_time}} == 48) {
+          return "12:00AM"
+        }
+        var minutesFromMidnight = 30 * {{end_time}};
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 12) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
         
         if (hoursFromMidnight > 11) {
-            amOrPm = "PM";
+            amOrPm = "PM";
             var returnValue = hoursFromMidnight + minutes + amOrPm;
-            return returnValue;
+            return returnValue;
         }
 
-        var returnValue = hoursFromMidnight + minutes + amOrPm;
-        return returnValue;
-      }
-    </script>
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+    </script>
     <!--<script>
     document.write(getFillerHours());
     </script>-->
     
+    <br>
     <script>
           document.write('<div class="wrapper length-' + {{lengthOfEvent}} + "-" + {{sleepOrNot}} + '">');</script>
     <div class = "span">
@@ -134,13 +132,13 @@
       <b>Description</b>: {{description}}<br></font>
     
   <script>
-    document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}&date={{date}}&user={{user}}\"> Delete Event</a>");
-    document.write("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a id= \"edit{{event}}\"  href=\"edit?id={{_id}}&event={{event}}&date={{date}}&start_time={{start_time}}&end_time={{end_time}}&desc={{description}}&user={{user}}\"> Edit Event</a>");
+    document.write("<a id= \"delete{{event}}\"  href=\"delete?id={{_id}}&event={{event}}&date={{date}}&user={{user}}\"><font color=\"DarkBlue\"><u>Delete Event</u></font></a>");
+    document.write("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a id= \"edit{{event}}\"  href=\"edit?id={{_id}}&event={{event}}&date={{date}}&start_time={{start_time}}&end_time={{end_time}}&desc={{description}}&user={{user}}\"><font color=\"DarkBlue\"><u> Edit Event</font></u></a>");
   </script>
 </div>
 </div>
 
-  {{/each}}
+  {{/each}}
 
 <!--
   <div class="time-field">11 AM - 1 PM</div><a class="button" href="#">CS 145</a>
@@ -159,5 +157,15 @@
 
   
   <!--<script type="text/javascript" src="js/webflow.js"></script>-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48940736-1', 'ubersleep.herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>
