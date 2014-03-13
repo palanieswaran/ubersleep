@@ -4,18 +4,30 @@ var express = require('express');
 var app = express();
 
 exports.view = function(req, res) { 
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	res.render('add-event');
 }
 
 exports.view2 = function(req, res) { 
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
   res.render('add-event2');
 }
 
 exports.viewError = function(req, res) { 
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
   res.render('add-event-error');
 }
 
 exports.add = function(req, res) {
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
   console.log("req: " + req);
   console.log("res: " + res);
   var event_name = req.body.event_name;
@@ -68,7 +80,7 @@ exports.add = function(req, res) {
   console.log("event to be added start time: " + start_time);
   console.log("event to be added end time: " + end_time);
 
-  models.Event.find({"date_to_check": date_to_check,
+  models.Event.find({"date_to_check": date_to_check, "User": user_str,
         $or: [ {"start_time": start_time},
               {"end_time:": end_time},
               { $and: [ {"start_time": { $gt: start_time}}, {"start_time": { $lt: end_time}}]},
@@ -89,7 +101,7 @@ exports.add = function(req, res) {
         console.log(events[i]);
       }
       var message = 'this is an error message';
-      res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time + "?user"= + user_str);
+      res.redirect('add-event-error?date=' + date_to_check + "&name=" + event_name + "&start_time=" + start_time + "&end_time=" + end_time + "&user=" + user_str);
     } else {
       console.log("entered else");
       var newEvent = new models.Event({

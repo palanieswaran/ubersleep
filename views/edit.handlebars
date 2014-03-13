@@ -4,7 +4,7 @@
 <html data-wf-site="52f3116d5d8eed2b6b00065c">
 <head>
   <meta charset="utf-8">
-  <title>Sleeprite - Add Event</title>
+  <title>Ubersleep - Edit Event</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
@@ -143,6 +143,7 @@
         var returnValue = hoursFromMidnight + minutes + amOrPm;
         return returnValue;
       }
+
      
       document.write("<b>" + event_name + "</b> is currently on <b>" + date_to_check + "</b> from <b>" + getStartTime(start_time) + "</b> to <b>" + getEndTime(end_time) + "</b>.");</script></p>
   
@@ -307,6 +308,8 @@
       document.write("<input type=\"hidden\" id=\"desc\" name=\"desc\" value=" + desc2 + ">");
       document.write("<input type=\"hidden\" id=\"_id\" name=\"_id\" value=" + id + ">");
       document.write("<input type=\"hidden\" id=\"user\" name=\"user\" value=" + user + ">");
+      document.write("<input type=\"hidden\" id=\"prev_start_time\" name=\"prev_start_time\" value=" + start_time + ">");
+      document.write("<input type=\"hidden\" id=\"prev_end_time\" name=\"prev_end_time\" value=" + end_time + ">");
       </script>
     <br><br><center><button id="submitBtn" type="submit" class="btn btn-default btn-lg">Edit Event</button></center>
   </form>

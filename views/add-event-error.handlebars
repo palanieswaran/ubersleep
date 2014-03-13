@@ -4,7 +4,7 @@
 <html data-wf-site="52f3116d5d8eed2b6b00065c">
 <head>
   <meta charset="utf-8">
-  <title>Sleeprite - Add Event</title>
+  <title>Ubersleep - Add Event Error</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
@@ -27,9 +27,90 @@
   <link rel="apple-touch-icon" href="https://y7v4p6k4.ssl.hwcdn.net/51d1bb05fc804b2621000001/51e06f0756878bb26a000008_webclip-slate.png">
 </head>
 <body class = "bground">
-    <script>document.write("<p>Add Event Error: You tried to add event " + GetUrlValue(name) + " on " + GetUrlValue(date) + " from " + GetUrlValue(start_time) + " to " + GetUrlValue(end_time) + ", causing an overlap.</p>");</script>
+    <script>
+      function getStartTime(start_time) {
+        //html here could return for (i = {{prev_end_time}}, < {{start_time}})), "i: <br>"
+        var minutesFromMidnight = 30 * start_time;
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+
+        if (hoursFromMidnight > 11) {
+          if (hoursFromMidnight > 12) {
+            hoursFromMidnight = hoursFromMidnight - 12;
+            amOrPM = "PM";
+          }
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+  
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+
+      function getEndTime(end_time) {
+        if (end_time == 48) {
+          return "12:00AM"
+        }
+        var minutesFromMidnight = 30 * end_time;
+        var hoursFromMidnight = Math.floor(minutesFromMidnight/60);
+        var minutes = ":00";
+        var amOrPm = "AM";
+        if (minutesFromMidnight % 60 == 30) {
+          minutes = ":30";
+        }
+        if (hoursFromMidnight == 0) {
+          hoursFromMidnight = 12;
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        if (hoursFromMidnight > 12) {
+          hoursFromMidnight = hoursFromMidnight - 12;
+          amOrPm = "PM";
+          var returnValue = hoursFromMidnight + minutes + amOrPm;
+          return returnValue;
+        }
+        
+        if (hoursFromMidnight > 11) {
+            amOrPm = "PM";
+            var returnValue = hoursFromMidnight + minutes + amOrPm;
+            return returnValue;
+        }
+
+        var returnValue = hoursFromMidnight + minutes + amOrPm;
+        return returnValue;
+      }
+
+    function GetUrlValue(VarSearch){
+            var SearchString = window.location.search.substring(1);
+            var VariableArray = SearchString.split('&');
+            for(var i = 0; i < VariableArray.length; i++){
+              var KeyValuePair = VariableArray[i].split('=');
+              if(KeyValuePair[0] == VarSearch){
+                return KeyValuePair[1];
+              }
+            }
+      }
+
+  var event_name_preparse2 = GetUrlValue("name");
+  var event_arr2 = event_name_preparse2.split('%20');
+  var event_name2 = "";
+  for (var i = 0; i < event_arr2.length - 1; i++) {
+    event_name2 += (event_arr2[i] + " ");
+  }
+  event_name2 += (event_arr2[event_arr2.length-1]);
+  </script>
   <h1 class = "swag_font">Add Event Error!</h1>
-  <h3 class = "swag_font_error">You added an event that overlaps. Please try again with correct times.</h3>
+  <!--<h3 class = "swag_font_error">--><center><font color = "red"><script>document.write("Add Event Error: You tried to add event <b>" + event_name2 + "</b> on <b>" + GetUrlValue("date") + "</b> from <b>" + getStartTime(parseInt(GetUrlValue("start_time"))) + "</b> to <b>" + getEndTime(parseInt(GetUrlValue("end_time"))) + "</b>, causing an overlap.");</script></font></center><!--</h3>-->
 <form id="event_form" role="form" method = "post" action = "/event/new">
     <div class="form-group">
       <label for="event_name">Event name:</label>
@@ -151,7 +232,8 @@
         <option value="47">11:30 pm</option>
       </select>
     </div>
-    <script>var user = getUrlValue("user");
+    <script>var user = GetUrlValue("user");
+    console.log("User in error is: " + user);
       document.write("<input type=\"hidden\" id=\"user\" name=\"user\" value=" + user + ">");</script>
     <br><br><center><input id="submitBtn" type="submit" class="btn btn-default btn-lg" value = "Add to Schedule"></center>
   </form>
@@ -163,7 +245,11 @@
   }
   </script>
   
-  <center><button id="scheduleBtn" type="button" class="btn btn-default btn-lg"><font class = "swag_font_5">Back to Schedule</font></button></center>
+    <form id="back_form" role="form" method = "post" action = "/schedule2">
+  <script>document.write("<input type=\"hidden\" id=\"date\" name=\"date\" value=" + GetUrlValue("date") + ">");
+      </script><center><input id="backBtn" type="submit" class="btn btn-default btn-lg" value = "Back to Schedule"></center>
+  </form>
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

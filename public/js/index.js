@@ -17,5 +17,15 @@ function initializePage() {
 
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
-	$('#startBtn').click(goBackToSchedule);
+	$('#submitBtn').click(goBackToSchedule);
+}
+
+function goBackToSchedule(e) {
+
+	var userName = document.getElementById("user_name").value;
+
+	if (userName === "") {
+		alert('Please enter a user name.');
+		e.preventDefault();
+	}
 }

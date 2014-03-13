@@ -1,14 +1,25 @@
 var models = require('../models');
 
 exports.view = function(req, res) { 
+    if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	res.render('edit');
 }
 
 exports.viewError = function(req, res) {
+    if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
   res.render('edit-event-error');
 }
 
 exports.edit = function(req, res) {
+  console.log("in edit function");
+    if (typeof req.session.user === 'undefined') {
+    console.log("in user undefined if in edit function");
+    res.redirect('/');
+  }
   var event_name_preparse2 = req.body.event_name;
 
   var event_arr2 = event_name_preparse2.split('%20');
@@ -45,7 +56,7 @@ exports.edit = function(req, res) {
   console.log("event to be added start time: " + start_time);
   console.log("event to be added end time: " + end_time);
 
-  models.Event.find({"date_to_check": date_to_check,
+  models.Event.find({ $and: [ { "date_to_check": date_to_check}, {"User": user_str} ],
         $or: [ {"start_time": start_time},
               {"end_time:": end_time},
               { $and: [ {"start_time": { $gt: start_time}}, {"start_time": { $lt: end_time}}]},
@@ -65,10 +76,8 @@ exports.edit = function(req, res) {
         console.log("These are the events that are overlapaping: ")
         console.log(events[i]);
         //here we need to forward 
-        res.redirect('edit-event-error');
       }
-      var message = 'this is an error message';
-      console.log(message);
+      res.redirect('edit-event-error?date=' + date_to_check + "&name=" + event_name2 + "&start_time=" + req.body.prev_start_time + "&end_time=" + req.body.prev_end_time + "&id=" + id + "&desc=" + desc2);
       //res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time);
     } else {
       console.log("entered else");

@@ -1,16 +1,25 @@
 var models = require('../models');
 
 exports.view = function(req, res) { 
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	res.render('add-sleep');
 }
 
-exports.view2 = function(req, res) { 
+exports.view2 = function(req, res) {
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	res.render('add-sleep2');
 }
 
 //query data based on date.
 
 exports.addsleep = function(req, res) {
+  if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	var form_data = req.body;
 	var sleep_option = form_data["sleep_option"];
 	/*var next_X_days = form_data["next_X_days"];
@@ -58,12 +67,13 @@ exports.addsleep = function(req, res) {
 	    user_str += (user_arr[i] + " ");
     }
     user_str += (user_arr[user_arr.length-1]);
+    console.log("User In add-sleep.js: " + user_str)
 
     /*for (var k = 0; k < dates_arr.length; k++) {
     	console.log("before render, date today is: " + dates_arr[k]);
     	var date_to_use = dates_arr[k];*/
 		models.Event
-			.find({ $and: [ {"date": form_data["date"]}, {"user": user_str}]})
+			.find({ $and: [ {"date": form_data["date"]}, {"User": user_str}]})
 			.sort('start_time')
 			.exec(renderEvent);
 
@@ -163,7 +173,7 @@ exports.addsleep = function(req, res) {
 				var sleep_times = new Array();
 				console.log("sleep option is " + sleep_option);
 				if (sleep_option == 0) {
-					sleep_times = new Array(14);
+					sleep_times[0] = 14;
 				}
 				if (sleep_option == 1) {
 					sleep_times = new Array(10, 3);
@@ -303,7 +313,8 @@ exports.addsleep = function(req, res) {
 								    "description": "Sleep cycle!",
 								    "start_time": j,
 								    "end_time": curr_end,
-									"user": user_str
+									"date_to_check": form_data["date"],
+									"User": user_str
 							    });
 
 							  newEvent.save(afterSaving);

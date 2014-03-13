@@ -1,10 +1,16 @@
 var models = require('../models');
 
 exports.view = function(req, res) {
+    if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
 	res.render('delete');
 }
 
 exports.deleteEvent = function(req, res) {
+    if (typeof req.session.user === 'undefined') {
+    res.redirect('/');
+  }
   var id = req.params.id;
   console.log("id is: " + id);
   models.Event.find({"_id": id}).remove().exec(afterRemoving);

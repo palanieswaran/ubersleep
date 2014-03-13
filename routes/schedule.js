@@ -5,6 +5,18 @@ var app = express();
 exports.view2 = function(req, res) { 
   var date2 = req.body.date;
   var user = req.body.user_name;
+  if (typeof user === 'undefined') {
+  	console.log("in if");
+  	user = req.session.user;
+  } else {
+  	console.log("in else");
+  	req.session.user = user;
+  }
+  if (typeof req.session.user === 'undefined') {
+  	console.log("before redirect");
+  	console.log("req.session.user is " + req.session.user)
+  	res.redirect('/');
+  }
   console.log("username in schedule.js: " + user);
   /*if (user != '') {
   	app.locals({
@@ -35,7 +47,7 @@ exports.view2 = function(req, res) { 
       console.log("date2 after processing: " + date2);
   }
   models.Event
-		.find({ $and: [ {"date": date2}, {"user": user}]})
+		.find({$and: [ {"date": date2}, {"User": user}]})
 		.sort('start_time')
 		.exec(renderEvent);
 
