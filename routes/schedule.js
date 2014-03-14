@@ -5,6 +5,7 @@ var app = express();
 exports.view2 = function(req, res) { 
   var date2 = req.body.date;
   var user = req.body.user_name;
+  console.log("user is: " + user);
   if (typeof user === 'undefined') {
   	console.log("in if");
   	user = req.session.user;

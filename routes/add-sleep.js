@@ -261,7 +261,8 @@ exports.addsleep = function(req, res) {
 				}
 
 				if (schedule_possible == "no") {
-					console.log("not possible");
+					req.session.date = form_data["date"];
+					res.redirect("schedule2");
 				} else {
 					var curr_start = 0;
 					var curr_end = 0;
@@ -300,11 +301,12 @@ exports.addsleep = function(req, res) {
 						}
 					}
 
+				req.session.date = form_data["date"];
+				res.redirect("schedule2");
+
 				}
 			}
 	//}
-	req.session.date = form_data["date"];
-	res.redirect("schedule2");
 
 
 	}
