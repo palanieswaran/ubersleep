@@ -8,7 +8,7 @@ exports.view = function(req, res) {
 }
 
 exports.deleteEvent = function(req, res) {
-    if (typeof req.session.user === 'undefined') {
+  if (typeof req.session.user === 'undefined') {
     res.redirect('/');
   }
   var id = req.params.id;
@@ -17,14 +17,16 @@ exports.deleteEvent = function(req, res) {
 
   function afterRemoving(err) {
 
-	var user = req.params.user;
+	var date = req.params.date;
 
-  	var user_arr = user.split('%20');
-  	var user_str = "";
-  	for (var i = 0; i < user_arr.length - 1; i++) {
-    	user_str += (user_arr[i] + " ");
+  	var date_arr = date.split('%20');
+  	var date_str = "";
+  	for (var i = 0; i < date_arr.length - 1; i++) {
+    	date_str += (date_arr[i] + " ");
   	}
-  	user_str += (user_arr[user_arr.length-1]);
+  	date_str += (date_arr[date_arr.length-1]);
+
+    req.session.date = date_str;
 
     if (err) {console.log(err); res.send(500);}
     res.redirect('schedule2');

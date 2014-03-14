@@ -25,25 +25,29 @@ exports.view2 = function(req, res) { 
   }
   console.log("app locals user is: " + app.locals.user);*/
   if (typeof date2 == 'undefined' || date2 == '') {
-  	console.log("in null");
-  	date2 = new Date().toString();
-      var month=new Array();
-      month["Jan"]="01";
-      month["Feb"]="02";
-      month["Mar"]="03";
-      month["Apr"]="04";
-      month["May"]="05";
-      month["Jun"]="06";
-      month["Jul"]="07";
-      month["Aug"]="08";
-      month["Sep"]="09";
-      month["Oct"]="10";
-      month["Nov"]="11";
-      month["Dec"]="12";
-      var monthNum = month[date2.substring(4,7)];
+  	if (typeof req.session.date != 'undefined') {
+  		date2 = req.session.date;
+  	} else {
+  		console.log("in null");
+  		date2 = new Date().toString();
+      	var month=new Array();
+	      month["Jan"]="01";
+	      month["Feb"]="02";
+	      month["Mar"]="03";
+	      month["Apr"]="04";
+	      month["May"]="05";
+	      month["Jun"]="06";
+	      month["Jul"]="07";
+	      month["Aug"]="08";
+	      month["Sep"]="09";
+	      month["Oct"]="10";
+	      month["Nov"]="11";
+	      month["Dec"]="12";
+	      var monthNum = month[date2.substring(4,7)];
 
-      var date_to_check = date2.substring(11,15) + "-" + monthNum + "-" + date2.substring(8,10);
-      date2 = date_to_check;
+	      var date_to_check = date2.substring(11,15) + "-" + monthNum + "-" + date2.substring(8,10);
+	      date2 = date_to_check;
+  	}
       console.log("date2 after processing: " + date2);
   }
   models.Event

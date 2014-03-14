@@ -122,6 +122,7 @@ exports.add = function(req, res) {
         if (err) {console.log(err); res.send(500); }
         //var date = req.body.date;
         //we want to pass date as post request
+        req.session.date = date_to_check;
         res.redirect('schedule2');
       }
     }

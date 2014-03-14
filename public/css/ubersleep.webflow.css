@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Audiowide);
+
 body {
   font-family: Arial;
   color: #333;
@@ -542,7 +544,8 @@ p {
   }
 
   .bground {
-    background-color: #DCF6FF;
+    /*background-color: #DCF6FF;*/
+    background-image:url('http://akwos.com/images/t/2048x1536/1578-cloud-background-resized3-vail-blue-sky-limo-2048x1536.jpg');
   }
 
   .btn_blue_override {
@@ -562,13 +565,13 @@ p {
 }
 
   .swag_font { /* header */
-  font-family: "Lucida Grande", Tahoma;
+  font-family: 'Audiowide', Tahoma;
   font-size: 30px;
   font-weight: lighter;
   font-variant: normal;
   text-transform: uppercase;
   /*color: #666666;*/
-  color: #B894FF;
+  color: #AC59FF;
   margin-top: 30px;
   text-align: center!important;
   letter-spacing: 0.3em;

@@ -67,7 +67,7 @@ app.get('/edit', edit.view);
 app.post('/event/new', add_event.add);
 app.post('/schedule/render', schedule.renderPage);
 app.post('/sleep/new', add_sleep.addsleep);
-app.post('/delete/:id/:user/deleteEvent', delete_js.deleteEvent);
+app.post('/delete/:id/:date/deleteEvent', delete_js.deleteEvent);
 app.post('/edit/new', edit.edit);
 app.post('/schedule2', schedule.view2);
 

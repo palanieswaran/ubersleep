@@ -22,42 +22,6 @@ exports.addsleep = function(req, res) {
   }
 	var form_data = req.body;
 	var sleep_option = form_data["sleep_option"];
-	/*var next_X_days = form_data["next_X_days"];
-
-	function getTomorrow(d,offset){
-	    if(typeof(d) === "string"){
-	        var t = d.split("-");
-	        d = new Date(t[2],t[1] - 1, t[0]);
-	    }
-	    return new Date(d.setDate(d.getDate() + offset));
-	}
-
-	var dates_arr = new Array();
-	for (var i = 0; i < 5; i++) {
-		var our_date = form_data["date"];
-		var date_to_pass = our_date.substring(8) + "-" + our_date.substring(5,8) + our_date.substring(0,4);
-		var new_d = getTomorrow(date_to_pass, i).toString();
-		console.log("in dates_arr, before toString: " + getTomorrow(date_to_pass, i));
-		console.log("in dates_arr, after toString: " + new_d);
-     	var month=new Array();
-	    month["Jan"]="01";
-	    month["Feb"]="02";
-	    month["Mar"]="03";
-	    month["Apr"]="04";
-	    month["May"]="05";
-	    month["Jun"]="06";
-	    month["Jul"]="07";
-	    month["Aug"]="08";
-	    month["Sep"]="09";
-	    month["Oct"]="10";
-	    month["Nov"]="11";
-	    month["Dec"]="12";
-	    var monthNum = month[new_d.substring(4,7)];
-
-	    var date_to_check = new_d.substring(11,15) + "-" + monthNum + "-" + new_d.substring(8,10);
-	    console.log("date_to_check in dates_arr after processing: " + date_to_check);
-		dates_arr[i] = date_to_check;
-	}*/
 
 	var user = form_data["user"];
 
@@ -67,7 +31,8 @@ exports.addsleep = function(req, res) {
 	    user_str += (user_arr[i] + " ");
     }
     user_str += (user_arr[user_arr.length-1]);
-    console.log("User In add-sleep.js: " + user_str)
+    console.log("User In add-sleep.js: " + user_str);
+    var buffer_space = 6;
 
     /*for (var k = 0; k < dates_arr.length; k++) {
     	console.log("before render, date today is: " + dates_arr[k]);
@@ -78,7 +43,7 @@ exports.addsleep = function(req, res) {
 			.exec(renderEvent);
 
 			function renderEvent(err, events) {
-				if (events.length == 0) console.log ("no events!");
+				if (events.length == 0) buffer_space = 8;
 				for (var i = 0; i < events.length; i++) {
 					console.log("event " + i + ": " + events[i]["event"]);
 					console.log(events[i]["start_time"]);
@@ -225,7 +190,7 @@ exports.addsleep = function(req, res) {
 								// if your start is before a given prev_end_arr[b], you need to be 4 buffer before
 								// its start
 								if (st_map[pos] < prev_end_arr[b]) {
-									if ((st_map[pos] + sleep_times[i] + 6) <= prev_start_arr[b]) {
+									if ((st_map[pos] + sleep_times[i] + buffer_space) <= prev_start_arr[b]) {
 										curr_best_start = st_map[pos];
 									} else {
 										//so this is not an eligible spot. we need to check more ends.
@@ -249,12 +214,12 @@ exports.addsleep = function(req, res) {
 								console.log("Part 2, before if: new block starting at " + st_map[pos] + " ending at " + (st_map[pos] + sleep_times[i]));
 								console.log("Part 2, before if: block evaluated against: start: " + prev_start_arr[a] + "end: " + prev_end_arr[a]);
 								if (st_map[pos] > prev_start_arr[a]) {
-									if (prev_end_arr[a] + 6 <= st_map[pos]) {
+									if (prev_end_arr[a] + buffer_space <= st_map[pos]) {
 										curr_best_start = st_map[pos];
 									} else {
 										console.log("Entering the complicated if. len_map is: " + len_map[pos]);
-										if (len_map[pos] >= (6 - (st_map[pos] - prev_end_arr[a]) + sleep_times[i])) {
-											adjustment = 6 - (st_map[pos] - prev_end_arr[a]);
+										if (len_map[pos] >= (buffer_space - (st_map[pos] - prev_end_arr[a]) + sleep_times[i])) {
+											adjustment = buffer_space - (st_map[pos] - prev_end_arr[a]);
 											console.log("Entered second complicated. Adjustment = " + adjustment);
 											curr_best_start = st_map[pos] + adjustment;
 											adjusted_best_start = st_map[pos] + adjustment;
@@ -307,10 +272,18 @@ exports.addsleep = function(req, res) {
 								curr_start = finalMap[j];
 								curr_end = finalMap[j];
 								console.log("start of sleep on " + form_data["date"] + " is " + j + " and will last until " + curr_end);
+								var cycle_name = "";
+								if (sleep_option == 0) cycle_name = "Monophasic";
+								if (sleep_option == 1) cycle_name = "Siesta";
+								if (sleep_option == 2) cycle_name = "Everyman";
+								if (sleep_option == 3) cycle_name = "Dual Core";
+								if (sleep_option == 4) cycle_name = "Dyamxion";
+								if (sleep_option == 5) cycle_name = "Uberman";
+								var description = cycle_name + " sleep cycle!"
 								var newEvent = new models.Event({
 								    "event": "Sleep " + (i + 1),
 								    "date": form_data["date"],
-								    "description": "Sleep cycle!",
+								    "description": description,
 								    "start_time": j,
 								    "end_time": curr_end,
 									"date_to_check": form_data["date"],
@@ -330,6 +303,7 @@ exports.addsleep = function(req, res) {
 				}
 			}
 	//}
+	req.session.date = form_data["date"];
 	res.redirect("schedule2");
 
 

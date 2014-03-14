@@ -77,7 +77,7 @@ exports.edit = function(req, res) {
         console.log(events[i]);
         //here we need to forward 
       }
-      res.redirect('edit-event-error?date=' + date_to_check + "&name=" + event_name2 + "&start_time=" + req.body.prev_start_time + "&end_time=" + req.body.prev_end_time + "&id=" + id + "&desc=" + desc2);
+      res.redirect('edit-event-error?date=' + date_to_check + "&name=" + event_name2 + "&start_time=" + req.body.prev_start_time + "&end_time=" + req.body.prev_end_time + "&id=" + id + "&desc=" + desc2 + "&user=" + user);
       //res.redirect('add-event-error?date=' + date_to_check + "?name=" + event_name + "?start_time=" + start_time + "?end_time=" + end_time);
     } else {
       console.log("entered else");
@@ -85,6 +85,7 @@ exports.edit = function(req, res) {
       models.Event.find({"_id": id}).remove().exec(afterRemoving);
 
       function afterRemoving(err) {
+        console.log("user name is: " + user_str + ", date is + " + date);
         if (err) {console.log(err); res.send(500);}
         var newEvent = new models.Event({
         "event": event_name2,
@@ -101,7 +102,9 @@ exports.edit = function(req, res) {
 
         function afterSaving(err) {
           console.log("addEventInEdit");
+          console.log("date to check in saving in edit is: " + date_to_check);
           if (err) {console.log(err); res.send(500); }
+          req.session.date = date_to_check;
           res.redirect('schedule2');
         }
 

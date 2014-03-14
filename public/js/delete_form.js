@@ -60,7 +60,31 @@ console.log("id value in delete_form is: " + id);
 //console.log("the date is:" + date_str);
 //console.log("the event is:" + GetUrlValue("event"));
 //var event_name = GetUrlValue("event");
-  $.post('/delete/'+id+'/'+user+'/deleteEvent', function() {
+
+  var date_arr2 = GetUrlValue("date").split('%20');
+  var date_str2 = "";
+  for (var i = 0; i < date_arr2.length - 1; i++) {
+    date_str2 += (date_arr2[i] + " ");
+  }
+  date_str2 += (date_arr2[date_arr2.length-1]);
+  var month=new Array();
+      month["Jan"]="01";
+      month["Feb"]="02";
+      month["Mar"]="03";
+      month["Apr"]="04";
+      month["May"]="05";
+      month["Jun"]="06";
+      month["Jul"]="07";
+      month["Aug"]="08";
+      month["Sep"]="09";
+      month["Oct"]="10";
+      month["Nov"]="11";
+      month["Dec"]="12";
+      var monthNum = month[date_str2.substring(4,7)];
+
+      var date_to_check2 = date_str2.substring(11,15) + "-" + monthNum + "-" + date_str2.substring(8,10);
+
+  $.post('/delete/'+id+'/'+date_to_check2+'/deleteEvent', function() {
 window.location.href = 'schedule2';
 });
 }
